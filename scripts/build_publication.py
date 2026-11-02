@@ -142,6 +142,7 @@ def inline(text):
     text=html.escape(text)
     text=re.sub(r"\[([^\]]+)\]\(([^)]+)\)",lambda m:f'<a href="{m[2]}" color="#087f8c">{m[1]}</a>',text)
     text=re.sub(r"\*\*(.+?)\*\*",r"<b>\1</b>",text)
+    text=re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)",r"<i>\1</i>",text)
     text=re.sub(r"`([^`]+)`",r'<font name="Courier">\1</font>',text)
     return text
 
@@ -188,6 +189,8 @@ def make_pdf(markdown,path,title):
             story.append(Paragraph(inline(line[3:]),styles["Heading1"])); i+=1; continue
         if line.startswith("### "):
             story.append(Paragraph(inline(line[4:]),styles["Heading2"])); i+=1; continue
+        if re.match(r"^\d+\. ",line):
+            story.append(Paragraph(inline(line),styles["BodyX"])); i+=1; continue
         paragraph=[line]; i+=1
         while i<len(lines) and lines[i].strip() and not lines[i].startswith(("#","|","![","```")):
             paragraph.append(lines[i].strip()); i+=1
