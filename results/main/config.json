@@ -24,7 +24,8 @@
   "learned": true,
   "source_sha256": {
     "ksentinel\\__init__.py": "beb9801ecda3d4b3b862aed6f7d702bf8fbfc358c7e8501ea4d5a371bcd35a76",
-    "ksentinel\\benchmark.py": "e7779d769744a49a6a079bb438bb4fcb8dcb17f8cd62d500067e8cadfb616893",
+    "ksentinel\\audit.py": "cb037762ce5455f64ea8ace0104953079ee29973dd161f91bfe738742b16cd04",
+    "ksentinel\\benchmark.py": "b1020e5f798557a20419657276ca0cc6d4d4a761e5d0a438e11d1311250db08a",
     "ksentinel\\core.py": "8742610677816ca70406b8b2747771c71dfab5fe2b601043b1e32f070124902a",
     "ksentinel\\learned.py": "a9c0ea8297cfee6a850256a026501df0d0fd8d846b63f41cc011103e68106032",
     "RESEARCH_PROTOCOL.md": "f1b349ae38e019864d190325e2c4e93608ebe63fbdc2f4cff9052d5d631338fd"

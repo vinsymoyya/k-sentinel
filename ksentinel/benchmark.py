@@ -80,7 +80,7 @@ def run(args):
             import torch
             from .learned import train
             model, history = train(seed, args.train, args.epochs, args.size)
-            config["torch"] = torch.__version__
+            config["torch"] = str(torch.__version__)
             training[str(seed)] = history
             checkpoint = out/f"cnn_seed{seed}.pt"
             torch.save({"state_dict": model.state_dict(), "seed": seed, "history": history,

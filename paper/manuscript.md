@@ -138,7 +138,7 @@ For CNN insertions, universal fusion yields 0.2134 mean NRMSE versus 0.2196 with
 
 ### 5.4 Reproducibility evidence
 
-The full run completed on CPU in 177.7 seconds in the recorded environment. This is a local end-to-end simulation timing, not clinical inference latency or a cross-hardware benchmark. The release includes all 129,024 subject/model/case/budget rows, calibration scores, split identities, three small checkpoints, generator, source hashes and an independent aggregation checker. The checker recomputed all 84 group counts, means and Wilson intervals, checked split separation, mask disjointness, finite scores, rank thresholds, source hashes, and audit-aware/clean decision equality. Software tests separately exercise Fourier unitarity, null-space construction, the analytic audit input contract and noiseless fusion.
+The full run completed on CPU in 173.1 seconds in the recorded environment. This is a local end-to-end simulation timing, not clinical inference latency or a cross-hardware benchmark. The release includes all 129,024 subject/model/case/budget rows, calibration scores, split identities, three small checkpoints, generator, source hashes and an independent aggregation checker. The checker recomputed all 84 group counts, means and Wilson intervals, checked split separation, mask disjointness, finite scores, rank thresholds, source hashes, and audit-aware/clean decision equality. Software tests separately exercise Fourier unitarity, null-space construction, the analytic audit input contract and noiseless fusion.
 
 ## 6. Discussion
 

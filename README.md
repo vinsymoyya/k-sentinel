@@ -1,5 +1,7 @@
 # K-Sentinel
 
+[![Scientific contracts](https://github.com/vinsymoyya/k-sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/vinsymoyya/k-sentinel/actions/workflows/ci.yml)
+
 **Can an AI reconstruction match its acquired MRI measurements and still contain an unsupported structure? Yes. Can a small independent audit always catch it? No.**
 
 An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier audits, and their limits. Includes synthetic data, a small trained CNN, an external reconstruction interface, complete results, and an unreviewed methods preprint.
@@ -46,9 +48,10 @@ To repeat the published experiment, including training three CNNs:
 ```bash
 python -m pip install -e ".[learned]"
 python -m ksentinel.benchmark --output results/reproduce
+python scripts/verify_checkpoints.py --directory results/reproduce
 ```
 
-The recorded local run used Python 3.12.14, NumPy 2.5.4 and PyTorch 2.14.1+cpu; it completed in 177.7 seconds with two CPU training threads. That timing is environment-specific. Other supported Python/library combinations should reproduce the mechanism; floating-point values and trained weights can vary. Exact environment and experiment source hashes are in `results/main/config.json`. The broader dependency ranges support portability rather than claiming bitwise reproduction everywhere.
+The recorded local run used Python 3.12.14, NumPy 2.5.4 and PyTorch 2.14.1+cpu; it completed in 173.1 seconds with two CPU training threads. That timing is environment-specific. Other supported Python/library combinations should reproduce the mechanism; floating-point values and trained weights can vary. Exact environment and experiment source hashes are in `results/main/config.json`. The broader dependency ranges support portability rather than claiming bitwise reproduction everywhere.
 
 To check the saved publication record independently:
 

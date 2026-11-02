@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "reason": "Repeat fixed-seed experiment after converting version metadata to a plain string for default-safe loading",
+  "reference_commit": "176cc7f",
+  "groups_exactly_identical": 84,
+  "all_subject_csv_records_exactly_identical": 129024,
+  "training_histories_identical": true,
+  "all_checkpoint_tensors_identical": [
+    "cnn_seed11.pt",
+    "cnn_seed29.pt",
+    "cnn_seed47.pt"
+  ],
+  "subject_csv_sha256": "d0fafbd48aecba9758ec09fd6fc3ef15e6a7e3c68de1b1dbbb6650c909a1e7eb"
+}
