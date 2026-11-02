@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "rows_checked": 129024,
+  "groups_checked": 84,
+  "checks": {
+    "split_identities_unique": true,
+    "experiment_source_hashes_match": true,
+    "all_row_flags_masks_and_policy_consistent": true,
+    "all_84_group_counts_means_and_intervals_recomputed": true,
+    "audit_aware_error_has_identical_decisions_to_clean": true,
+    "calibration_rank_and_oracle_noise_expectation_verified": true
+  },
+  "scope": "Structural and numerical verification of released simulation; not independent clinical validation"
+}

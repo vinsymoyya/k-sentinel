@@ -1,0 +1,166 @@
+[
+  {
+    "id": "bhadra2021",
+    "title": "On Hallucinations in Tomographic Image Reconstruction",
+    "authors": "Sayantan Bhadra; Varun A. Kelkar; Frank J. Brooks; Mark A. Anastasio",
+    "year": 2021,
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8673588/",
+    "doi": "10.1109/TMI.2021.3077857",
+    "evidence": "Primary research, full text inspected",
+    "relevance": "Prior art: measurement/null decomposition and hallucination maps. The basic blind-spot argument is not new."
+  },
+  {
+    "id": "antun2020",
+    "title": "On instabilities of deep learning in image reconstruction and the potential costs of AI",
+    "authors": "Vegard Antun; Francesco Renna; Clarice Poon; Ben Adcock; Anders C. Hansen",
+    "year": 2020,
+    "url": "https://arxiv.org/abs/1902.05300",
+    "doi": "10.1073/pnas.1907377117",
+    "evidence": "Primary research abstract inspected",
+    "relevance": "Prior art: perturbation sensitivity, missed structures, and more measurements not always improving a learned pipeline."
+  },
+  {
+    "id": "yaman2020",
+    "title": "Self-supervised learning of physics-guided reconstruction neural networks without fully sampled reference data",
+    "authors": "Burhaneddin Yaman et al.",
+    "year": 2020,
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/mrm.28378",
+    "doi": "10.1002/mrm.28378",
+    "evidence": "Primary research abstract inspected",
+    "relevance": "SSDU uses disjoint measurement subsets for reconstruction and training loss; holdout splitting is not new."
+  },
+  {
+    "id": "fischer2025",
+    "title": "CUTE-MRI: Conformalized Uncertainty-based framework for Time-adaptivE MRI",
+    "authors": "Paul Fischer; Jan Nikolas Morshuis; Thomas Kuestner; Christian Baumgartner",
+    "year": 2025,
+    "url": "https://arxiv.org/abs/2508.14952",
+    "doi": "10.48550/arXiv.2508.14952",
+    "evidence": "Primary preprint abstract inspected",
+    "relevance": "Prior art: conformal quantitative endpoint uncertainty and adaptive MRI acquisition; adaptive uncertainty is not a new contribution here."
+  },
+  {
+    "id": "ye2026",
+    "title": "QUTCC: Quantile Uncertainty Training and Conformal Calibration for Imaging Inverse Problems",
+    "authors": "Cassandra Tong Ye; Shamus Li; Tyler King; Kristina Monakhova",
+    "year": 2026,
+    "url": "https://arxiv.org/abs/2507.14760v2",
+    "doi": "10.48550/arXiv.2507.14760",
+    "evidence": "Primary preprint v2 abstract inspected; originally 2025, revised May 2026",
+    "relevance": "Prior art: spatially adaptive calibrated image intervals including MRI. No claim to invent conformal image uncertainty."
+  },
+  {
+    "id": "saksena2026",
+    "title": "Uncertainty Estimation in Deep Learning MRI Reconstruction with Focus on Pathologies",
+    "authors": "Vanya Saksena; Florian Knoll; Bernhard Kainz",
+    "year": 2026,
+    "url": "https://papers.miccai.org/miccai-2026-sat/UNSURE2026_019.html",
+    "evidence": "Official proceedings abstract and BibTeX inspected",
+    "relevance": "Pathology-level evaluation already exists; uncertainty correlation alone is not a disease detection guarantee."
+  },
+  {
+    "id": "medsam2024",
+    "title": "Segment anything in medical images",
+    "authors": "Jun Ma et al.",
+    "year": 2024,
+    "url": "https://www.nature.com/articles/s41467-024-44824-z",
+    "doi": "10.1038/s41467-024-44824-z",
+    "evidence": "Primary research page inspected",
+    "relevance": "General medical segmentation is an established competitive research area; segmentation is downstream of acquisition fidelity."
+  },
+  {
+    "id": "fda2026",
+    "title": "Artificial Intelligence-Enabled Medical Devices",
+    "year": 2026,
+    "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence/artificial-intelligence-enabled-medical-devices",
+    "evidence": "Official regulator page inspected",
+    "relevance": "Reports over 1600 authorized AI devices as of September 2026. Device totals are not market revenue or number of customers."
+  },
+  {
+    "id": "fdalist2026",
+    "title": "List of Artificial Intelligence-Enabled Medical Devices",
+    "year": 2026,
+    "url": "https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/list-artificial-intelligence-enabled-medical-devices",
+    "evidence": "Official regulator list inspected",
+    "relevance": "Nonexhaustive device list and authorization entries; no unsupported radiology share computed."
+  },
+  {
+    "id": "geair",
+    "title": "AIR Recon DL",
+    "url": "https://www.gehealthcare.com/en/products/magnetic-resonance-imaging/signa-mr-vision/effortless-imaging-ai-mri-solutions/air-recon-dl",
+    "evidence": "Manufacturer product page inspected",
+    "relevance": "Commercial AI MRI reconstruction exists. Advertised benefits are manufacturer claims, not K-Sentinel results."
+  },
+  {
+    "id": "subtlemr",
+    "title": "SubtleMR (2.3.x), K223623",
+    "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K223623",
+    "evidence": "Official FDA device entry inspected",
+    "relevance": "Commercial MRI image enhancement competitor; authorization does not imply equivalence to this proposed audit tool."
+  },
+  {
+    "id": "swiftmr",
+    "title": "SwiftMR 510(k) summary, K261349",
+    "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf26/K261349.pdf",
+    "evidence": "Official FDA PDF search result inspected; not a full technical assessment",
+    "relevance": "Vendor-neutral MRI enhancement compatible with selected vendor reconstruction pipelines; no benchmark against this product performed."
+  },
+  {
+    "id": "fastmri",
+    "title": "facebookresearch/fastMRI",
+    "url": "https://github.com/facebookresearch/fastMRI",
+    "evidence": "Official repository and live GitHub API inspected",
+    "relevance": "Raw MRI research ecosystem; code MIT, dataset access and terms separate. Repository archived at snapshot time."
+  },
+  {
+    "id": "deepinv",
+    "title": "DeepInverse",
+    "url": "https://github.com/deepinv/deepinv",
+    "evidence": "Official repository and live GitHub API inspected",
+    "relevance": "Imaging inverse-problem library and potential integration target; no integration claimed."
+  },
+  {
+    "id": "direct",
+    "title": "DIRECT",
+    "url": "https://github.com/NKI-AI/direct",
+    "evidence": "Official repository and live GitHub API inspected",
+    "relevance": "MRI reconstruction framework and potential baseline/integration target."
+  },
+  {
+    "id": "monai",
+    "title": "MONAI",
+    "url": "https://github.com/Project-MONAI/MONAI",
+    "evidence": "Live official GitHub API inspected",
+    "relevance": "Large general medical imaging ecosystem; stars are attention snapshots, not clinical adoption."
+  },
+  {
+    "id": "nnunet",
+    "title": "nnU-Net",
+    "url": "https://github.com/MIC-DKFZ/nnUNet",
+    "evidence": "Live official GitHub API inspected",
+    "relevance": "Reusable segmentation tooling draws substantial community interest; not a direct MRI audit competitor."
+  },
+  {
+    "id": "hallucinationscode",
+    "title": "Hallucinations in tomographic reconstruction code",
+    "url": "https://github.com/comp-imaging-sci/hallucinations-tomo-recon",
+    "evidence": "Official repository and live GitHub API inspected",
+    "relevance": "Most directly relevant foundational code; small observed attention demonstrates that scientific relevance does not guarantee stars."
+  },
+  {
+    "id": "orcid",
+    "title": "Add works to your ORCID record",
+    "url": "https://support.orcid.org/hc/en-us/articles/360006973133-Add-works-to-your-ORCID-record",
+    "evidence": "Official help inspected",
+    "relevance": "Works can be added by DOI, BibTeX, or manually. ORCID is a research identity record, not peer review or manuscript hosting."
+  },
+  {
+    "id": "conformal",
+    "title": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+    "authors": "Anastasios N. Angelopoulos; Stephen Bates",
+    "year": 2021,
+    "url": "https://arxiv.org/abs/2107.07511",
+    "evidence": "Primary tutorial abstract inspected",
+    "relevance": "Exchangeable score-rank calibration; no new conformal theorem is claimed."
+  }
+]

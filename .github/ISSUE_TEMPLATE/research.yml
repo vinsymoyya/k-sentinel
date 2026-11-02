@@ -1,0 +1,17 @@
+name: Reproduction or research result
+description: Share a reproducible result, adapter or counterexample
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question and observation
+      description: State the tested claim, including failures or negative results.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include command, seed, versions, synthetic example and expected versus observed behavior. Do not include patient data or credentials.
+    validations:
+      required: true

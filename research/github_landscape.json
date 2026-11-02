@@ -1,0 +1,59 @@
+{
+  "repositories": [
+    {
+      "archived": true,
+      "forks": 422,
+      "license": "MIT",
+      "pushed_at": "2025-01-21T14:15:30Z",
+      "repository": "facebookresearch/fastMRI",
+      "stars": 1538,
+      "url": "https://github.com/facebookresearch/fastMRI"
+    },
+    {
+      "archived": false,
+      "forks": 1697,
+      "license": "Apache-2.0",
+      "pushed_at": "2026-11-02T18:24:49Z",
+      "repository": "Project-MONAI/MONAI",
+      "stars": 8817,
+      "url": "https://github.com/Project-MONAI/MONAI"
+    },
+    {
+      "archived": false,
+      "forks": 2506,
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-30T22:04:45Z",
+      "repository": "MIC-DKFZ/nnUNet",
+      "stars": 9006,
+      "url": "https://github.com/MIC-DKFZ/nnUNet"
+    },
+    {
+      "archived": false,
+      "forks": 223,
+      "license": "BSD-3-Clause",
+      "pushed_at": "2026-11-02T09:06:04Z",
+      "repository": "deepinv/deepinv",
+      "stars": 844,
+      "url": "https://github.com/deepinv/deepinv"
+    },
+    {
+      "archived": false,
+      "forks": 50,
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-28T10:54:54Z",
+      "repository": "NKI-AI/direct",
+      "stars": 322,
+      "url": "https://github.com/NKI-AI/direct"
+    },
+    {
+      "archived": false,
+      "forks": 4,
+      "license": "MIT",
+      "pushed_at": "2022-01-20T14:39:17Z",
+      "repository": "comp-imaging-sci/hallucinations-tomo-recon",
+      "stars": 7,
+      "url": "https://github.com/comp-imaging-sci/hallucinations-tomo-recon"
+    }
+  ],
+  "retrieved_at_utc": "2026-11-02T22:59:21.4821998Z"
+}

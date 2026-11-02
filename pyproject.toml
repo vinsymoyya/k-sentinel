@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "k-sentinel"
+version = "0.1.0"
+description = "Reproducible synthetic audits for measurement-blind MRI reconstruction errors"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "Vinsy Moyya"}]
+dependencies = ["numpy>=1.26,<3"]
+keywords = ["mri", "medical-imaging", "inverse-problems", "reconstruction", "uncertainty"]
+
+[project.optional-dependencies]
+learned = ["torch>=2.2,<3"]
+paper = ["reportlab>=4,<5", "Pillow>=10", "pypdf>=5"]
+
+[project.scripts]
+k-sentinel = "ksentinel.benchmark:main"
+
+[project.urls]
+Repository = "https://github.com/vinsymoyya/k-sentinel"
+Issues = "https://github.com/vinsymoyya/k-sentinel/issues"
+
+[tool.setuptools.packages.find]
+include = ["ksentinel*"]

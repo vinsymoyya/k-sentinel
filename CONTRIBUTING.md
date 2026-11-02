@@ -1,0 +1,17 @@
+# Contributing
+
+The most valuable contribution is evidence someone else can reproduce. Report Python/library versions, platform, exact command, seed, data provenance and the observed result. Include a small synthetic example rather than private data. Do not upload patient images, identifiers, credentials or data you are not permitted to redistribute.
+
+## Start here
+
+1. Run the CPU quickstart and existing tests.
+2. Open an issue describing the question and intended evidence before a large change.
+3. Keep one experiment or interface change per pull request.
+4. Run `python -m unittest discover -s tests -v` and the no-CNN smoke benchmark.
+5. For experimental changes, use a new output directory and protocol version; preserve the released record.
+
+Useful small contributions: reproduce the analytic Fourier example; add a test for a new input-contract boundary; document installation on another operating system; or create a small adapter from a public reconstruction framework using synthetic values.
+
+Research contributions: natural-error evaluation, correctly whitened multicoil noise, raw-data operator adapters, prospective acquisition accounting, and challenging errors that evade the audit. Compare the same acquisition budget, preserve subject-level splits, and label oracle information. Include negative results and every evaluated challenge category. Do not tune against `results/main` and then describe it as an untouched test set.
+
+Do not infer diagnostic performance, vendor failure rates, patient benefit or regulatory authorization from this benchmark. Code contributions use MIT; newly contributed data must identify their own provenance and compatible license. Maintainers may reject data with unclear rights or patient privacy risk.

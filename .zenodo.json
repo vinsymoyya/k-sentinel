@@ -1,0 +1,9 @@
+{
+  "title": "K-Sentinel: Limits of Held-Out Measurement Audits for AI MRI Reconstruction",
+  "upload_type": "software",
+  "description": "Synthetic, reproducible MRI reconstruction audit benchmark with an unreviewed methods preprint, complete evaluation records, three small CNN checkpoints, calibration and failure controls. No clinical validation or patient data.",
+  "creators": [{"name": "Moyya, Vinsy", "orcid": "0009-0003-0042-3556"}],
+  "license": "MIT",
+  "keywords": ["MRI", "medical imaging", "reconstruction", "calibration", "synthetic benchmark"],
+  "version": "0.1.0"
+}
