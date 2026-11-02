@@ -90,6 +90,7 @@ python -m ksentinel.audit your_audit.npz
 | 5-page market analysis | [PDF](output/pdf/medical-imaging-ai-market-analysis.pdf), [Markdown](research/MARKET_ANALYSIS.md) |
 | Fixed protocol and experimental design | [Protocol](RESEARCH_PROTOCOL.md) |
 | Phantom, Fourier, noise and perturbation generator | [Core](ksentinel/core.py) |
+| Downloadable 16-object synthetic test subset | [NPZ dataset](data/synthetic-demo.npz), [exporter](scripts/export_demo.py) |
 | CNN definition and training | [Learned control](ksentinel/learned.py) |
 | External reconstruction audit | [API and CLI](ksentinel/audit.py) |
 | All 129,024 evaluation records | [Compressed CSV](results/main/subjects.csv.gz) |
