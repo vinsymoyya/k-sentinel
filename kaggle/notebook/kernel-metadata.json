@@ -1,0 +1,18 @@
+{
+  "id": "vinsymoyya/k-sentinel-45-checks-and-open-training",
+  "title": "K-Sentinel 45 Checks and Open Training",
+  "code_file": "k-sentinel-training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "vinsymoyya/k-sentinel-synthetic-mri-3840"
+  ],
+  "model_sources": [
+    "vinsymoyya/k-sentinel/pyTorch/residual-cnn/1"
+  ],
+  "competition_sources": [],
+  "kernel_sources": []
+}

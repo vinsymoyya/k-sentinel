@@ -6,7 +6,9 @@
 
 An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier audits, and their limits. Includes synthetic data, a small trained CNN, an external reconstruction interface, complete results, and an unreviewed methods preprint.
 
-[Read the paper](output/pdf/k-sentinel-preprint.pdf) · [Market and opportunity analysis](research/MARKET_ANALYSIS.md) · [Protocol](RESEARCH_PROTOCOL.md) · [Full results](results/main/summary.json) · [Contribute](CONTRIBUTING.md)
+**v0.2.0:** 45 distinct validation cases, validated open-model inference, a full 3,840-object split-preserving dataset export, and an offline Kaggle training notebook. The original paper and experimental results remain the v0.1.0 record.
+
+[Read the paper](output/pdf/k-sentinel-preprint.pdf) · [45-check catalogue](VALIDATION.md) · [Kaggle workflow](KAGGLE.md) · [Market analysis](research/MARKET_ANALYSIS.md) · [Protocol](RESEARCH_PROTOCOL.md) · [Full results](results/main/summary.json) · [Contribute](CONTRIBUTING.md)
 
 ![Audits reveal some errors and miss others](assets/audit_detection.png)
 
@@ -36,12 +38,14 @@ cd k-sentinel
 python -m venv .venv
 # Linux/macOS: source .venv/bin/activate
 # Windows PowerShell: .\.venv\Scripts\Activate.ps1
-python -m pip install -e .
-python -m unittest discover -s tests -v
+python -m pip install -e ".[learned]"
+python scripts/run_validation.py --output validation/local
 python -m ksentinel.benchmark --no-cnn --seeds 7 --train 16 --calibration 32 --test 16 --epochs 1 --output results/smoke
 ```
 
 The quickstart is a **small smoke run**, not the published experiment. `--no-cnn` runs the two mathematical controls; its training identity range is reserved but no model is trained. Each result directory contains calibration scores, split identities, a synthetic example, full compressed subject records and a summary.
+
+The validation runner requires exactly **45 cases with zero skips**, including checkpoint loading, actual optimization, measurement preservation, poisoned unused inputs, data corruption, split integrity and real CLI workflows. JSON and JUnit records accompany the release. Passing these contracts is software and synthetic-science evidence, not a medical reliability rating. A Numpy-only install remains available with `python -m pip install -e .`; the full 45-case suite also needs PyTorch.
 
 To repeat the published experiment, including training three CNNs:
 
@@ -56,7 +60,7 @@ The recorded local run used Python 3.12.14, NumPy 2.5.4 and PyTorch 2.14.1+cpu; 
 To check the saved publication record independently:
 
 ```bash
-python scripts/verify_results.py
+python scripts/verify_results.py --check-only
 ```
 
 ## Audit your own reconstruction
@@ -85,6 +89,16 @@ The CLI accepts an NPZ with `candidate`, `columns`, `audit_values`, `calibration
 python -m ksentinel.audit your_audit.npz
 ```
 
+To load an open checkpoint and reconstruct using only initially measured coefficients:
+
+```python
+from ksentinel.model_io import load_model, reconstruct
+model = load_model("results/main/cnn_seed11.pt")
+image = reconstruct(model, measured_kspace, initial_mask)
+```
+
+Optional `expected_sha256` checks checkpoint integrity before default-safe loading. Unacquired values in `measured_kspace` are ignored; the interface does not accept reference anatomy or audit values. For downloadable dataset training, see [Kaggle distribution](KAGGLE.md).
+
 ## What is released
 
 | Item | Location |
@@ -101,6 +115,8 @@ python -m ksentinel.audit your_audit.npz
 | Checkpoints and calibration scores | [Results directory](results/main) |
 | Split IDs and data description | [Splits](results/main/splits.json), [data card](DATA_CARD.md) |
 | Independent numerical reaggregation | [Verification](results/main/verification.json) |
+| 45 validation contracts and evidence | [Catalogue](VALIDATION.md), [JSON](validation/release-0.2.0.json), [JUnit](validation/release-0.2.0-junit.xml) |
+| Full dataset integrity check | [3,840-object verification](validation/dataset-0.2.0.json) |
 | Sources and live ecosystem snapshot | [Sources](research/sources.json), [GitHub snapshot](research/github_landscape.json) |
 
 ![Fixed synthetic counterexample](assets/counterexample.png)

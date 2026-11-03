@@ -1,0 +1,13 @@
+K-Sentinel v0.2.0 extends the open synthetic MRI research workflow with **45 distinct executable validation contracts**, an open-model loading/inference interface, a full split-preserving dataset export and public Kaggle training assets.
+
+The 45 cases cover mathematical/operator invariants, statistical rank calibration, invalid inputs, data corruption, split leakage, held-out-measurement leakage, all three released checkpoints, actual optimization, deterministic training, CLI behavior, frozen-result reaggregation and end-to-end training from downloaded shards. Missing cases or skips do not count as passes. JSON/JUnit evidence and source hashes are included; hosted checks run the same cases on Python 3.11 and 3.12.
+
+Default-safe model loading now supports optional checksum verification, strict architecture loading and rejection of nonfinite weights. Reconstruction ignores unacquired coefficients. Audit inputs now reject negative or complex calibration scores and score overflow. Empty images receive explicit validation; the old implementation already rejected them later in its FFT. A regression record demonstrates the three accepted-invalid-input defects against frozen v0.1.0 source.
+
+The full dataset contains **3,840 synthetic complex objects in nine train/calibration/test shards**. Every array regenerates exactly, and all identity memberships match the published experiment. Generated data are CC0-1.0; model weights and code are MIT. No patient data, external atlas or third-party trained weights are included.
+
+The Kaggle notebook attaches the data and model variation, runs all 45 contracts, trains fixed-epoch CNNs on CPU with internet disabled, and reports held-out synthetic reconstruction errors and downloadable checkpoints. A prepared/uploaded notebook is not a completed hosted experiment; publication and execution states are tracked in `release_status.json` and the retained hosted artifacts.
+
+The original v0.1.0 paper, numerical results, checkpoints and release tag are preserved. Their executed source is now archived beside the result record so future library changes cannot rewrite experiment provenance. The new checks are evidence about software and synthetic scientific contracts. They do not establish clinical efficacy or repair the previously reported weak added-error audit sensitivity in the CNN.
+
+Author: Vinsy Moyya, https://orcid.org/0009-0003-0042-3556. Public research repository: https://github.com/vinsymoyya/k-sentinel. No DOI or peer-review acceptance is asserted, and no download/star/fork growth outcome is promised.

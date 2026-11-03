@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite this software and identify the synthetic, unreviewed nature of the associated preprint."
 title: "K-Sentinel: Limits of Held-Out Measurement Audits for AI MRI Reconstruction"
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-11-03
 authors:
   - family-names: Moyya

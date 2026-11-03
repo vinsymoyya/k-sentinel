@@ -1,5 +1,6 @@
 """Recompute released endpoint summaries independently from subject CSV rows."""
 import csv
+import argparse
 import gzip
 import hashlib
 import json
@@ -9,6 +10,9 @@ from pathlib import Path
 import numpy as np
 
 root=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--check-only",action="store_true",help="Verify without rewriting the frozen report")
+args=parser.parse_args()
 result=root/"results/main"
 summary=json.loads((result/"summary.json").read_text())
 splits=json.loads((result/"splits.json").read_text())
@@ -17,7 +21,10 @@ membership={r["identity"]: r["split"] for r in splits}
 assert len(splits) == 3*(512+256+512)
 checks={"split_identities_unique": True}
 for path, expected in summary["config"]["source_sha256"].items():
-    assert hashlib.sha256((root/path.replace("\\", "/")).read_bytes()).hexdigest()==expected, path
+    relative=path.replace("\\", "/")
+    snapshot=result/"source_snapshot"/relative
+    source=snapshot if snapshot.is_file() else root/relative
+    assert hashlib.sha256(source.read_bytes()).hexdigest()==expected, path
 checks["experiment_source_hashes_match"]=True
 groups=defaultdict(list)
 with gzip.open(result/"subjects.csv.gz","rt",encoding="utf8",newline="") as stream:
@@ -64,5 +71,6 @@ for seed in (11,29,47):
 checks["calibration_rank_and_oracle_noise_expectation_verified"]=True
 report={"status":"passed","rows_checked":sum(map(len,groups.values())),"groups_checked":len(groups),"checks":checks,
         "scope":"Structural and numerical verification of released simulation; not independent clinical validation"}
-(result/"verification.json").write_text(json.dumps(report,indent=2))
+if not args.check_only:
+    (result/"verification.json").write_text(json.dumps(report,indent=2))
 print(json.dumps(report,indent=2))

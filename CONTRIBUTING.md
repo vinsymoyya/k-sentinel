@@ -7,7 +7,7 @@ The most valuable contribution is evidence someone else can reproduce. Report Py
 1. Run the CPU quickstart and existing tests.
 2. Open an issue describing the question and intended evidence before a large change.
 3. Keep one experiment or interface change per pull request.
-4. Run `python -m unittest discover -s tests -v` and the no-CNN smoke benchmark.
+4. Install `.[learned]`, then run `python scripts/run_validation.py --output validation/local`. All 45 cases must run with zero skips. Add new cases when material behavior needs coverage and update the catalogue/count contract explicitly; do not conceal new behavior to preserve a number.
 5. For experimental changes, use a new output directory and protocol version; preserve the released record.
 
 Useful small contributions: reproduce the analytic Fourier example; add a test for a new input-contract boundary; document installation on another operating system; or create a small adapter from a public reconstruction framework using synthetic values.

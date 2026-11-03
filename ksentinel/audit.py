@@ -14,7 +14,7 @@ def audit_reconstruction(candidate, columns, audit_values, calibration_scores, s
     columns = np.asarray(columns)
     audit_values = np.asarray(audit_values)
     calibration_scores = np.asarray(calibration_scores)
-    if candidate.ndim != 2 or not np.iscomplexobj(candidate) or not np.isfinite(candidate).all():
+    if candidate.ndim != 2 or not candidate.size or not np.iscomplexobj(candidate) or not np.isfinite(candidate).all():
         raise ValueError("Candidate must be a finite 2D complex image")
     if columns.ndim != 1 or columns.dtype.kind not in "iu" or not len(columns):
         raise ValueError("Columns must be a nonempty integer vector")
@@ -22,11 +22,16 @@ def audit_reconstruction(candidate, columns, audit_values, calibration_scores, s
         raise ValueError("Audit columns must be unique and within the candidate width")
     if audit_values.shape != (candidate.shape[0], len(columns)) or not np.isfinite(audit_values).all():
         raise ValueError("Audit values must have shape (height, number of audit columns)")
-    if not np.isfinite(sigma) or sigma <= 0:
+    if np.ndim(sigma) != 0 or not np.isrealobj(sigma) or not np.isfinite(sigma) or sigma <= 0:
         raise ValueError("Sigma must be finite and positive")
+    if not np.isrealobj(calibration_scores) or np.any(calibration_scores < 0):
+        raise ValueError("Calibration scores must be real and nonnegative")
     limit = threshold(calibration_scores, alpha)
     residual = fft(candidate)[:,columns]-audit_values
-    value = float(np.mean(np.abs(residual)**2)/sigma**2)
+    with np.errstate(over="ignore",invalid="ignore",divide="ignore"):
+        value = float(np.mean(np.abs(residual)**2)/sigma**2)
+    if not np.isfinite(value):
+        raise ValueError("Audit score overflowed; rescale image, data and sigma together")
     p = float((1+np.count_nonzero(calibration_scores >= value))/(len(calibration_scores)+1))
     return {"score": value, "threshold": limit if np.isfinite(limit) else None,
             "p_value": p, "flagged": bool(value > limit), "alpha": alpha,

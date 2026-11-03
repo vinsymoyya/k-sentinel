@@ -1,0 +1,19 @@
+{
+  "source": "v0.1.0 frozen audit implementation",
+  "observations": {
+    "negative_calibration": {
+      "result": "incorrectly accepted"
+    },
+    "complex_calibration": {
+      "result": "incorrectly accepted"
+    },
+    "empty_image": {
+      "result": "rejected",
+      "exception": "ValueError"
+    },
+    "score_overflow": {
+      "result": "incorrectly accepted"
+    }
+  },
+  "scope": "Three accepted-invalid-input defects; empty dimensions already failed later in the FFT and now receive explicit validation"
+}

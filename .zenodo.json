@@ -5,5 +5,5 @@
   "creators": [{"name": "Moyya, Vinsy", "orcid": "0009-0003-0042-3556"}],
   "license": "MIT",
   "keywords": ["MRI", "medical imaging", "reconstruction", "calibration", "synthetic benchmark"],
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

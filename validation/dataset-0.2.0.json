@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "objects_verified": 3840,
+  "shards_verified": 9,
+  "all_arrays_regenerate_exactly": true,
+  "published_split_membership_matches": true,
+  "manifest_sha256": "38e7d697855ea153c0c11e6958a9b4933398f7e6ba37bbdb550a440325dcb3f1",
+  "scope": "Synthetic dataset integrity, not clinical validity"
+}

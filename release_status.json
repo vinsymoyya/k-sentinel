@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "as_of_local_date": "2026-11-03",
   "github": "public repository published at https://github.com/vinsymoyya/k-sentinel",
   "orcid": "public preprint work added and verified",
@@ -10,5 +10,17 @@
   "researchgate": "excluded at author request",
   "doi": null,
   "peer_review": "not performed",
-  "clinical_validation": "not performed"
+  "clinical_validation": "not performed",
+  "validation": {
+    "distinct_cases": 45,
+    "local_passed": 45,
+    "local_skipped": 0,
+    "hosted": "pending"
+  },
+  "kaggle": {
+    "dataset": "uploaded; creation processing",
+    "dataset_url": "https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840",
+    "model": "prepared locally",
+    "notebook": "prepared locally; hosted execution pending"
+  }
 }

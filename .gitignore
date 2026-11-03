@@ -8,3 +8,7 @@ tmp/
 results/smoke/
 results/reproduce/
 *.log
+validation/local/
+validation/ci/
+validation/kaggle/
+results/training/

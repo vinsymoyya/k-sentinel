@@ -98,7 +98,7 @@ def run(args):
                     scores.setdefault((name, budget), []).append(score(candidate, measured, audit[:budget]))
         thresholds = {key: threshold(values) for key, values in scores.items()}
         (out/f"calibration_seed{seed}.json").write_text(json.dumps({
-            f"{name}:{budget}": {"threshold": thresholds[(name, budget)], "scores": values}
+            f"{name}:{budget}": {"threshold": thresholds[(name, budget)] if np.isfinite(thresholds[(name, budget)]) else None, "scores": values}
             for (name, budget), values in scores.items()}, indent=2))
         for i in range(args.train):
             manifest.append({"identity": seed*100000+i, "seed": seed, "split": "train"})
