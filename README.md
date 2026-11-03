@@ -8,7 +8,7 @@ An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier 
 
 **v0.2.0:** 45 distinct validation cases, validated open-model inference, a full 3,840-object split-preserving dataset export, and an offline Kaggle training notebook. The original paper and experimental results remain the v0.1.0 record.
 
-**Open downloads:** [Kaggle dataset: 3,840 complex MRI phantoms](https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840) · [Kaggle open CNN weights and source](https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn/4) · [Run and fork the Kaggle training notebook](https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training) � [Hosted 45/45 validation evidence](https://github.com/vinsymoyya/k-sentinel/actions/runs/41551084455). The dataset is CC0-1.0; code and model weights are MIT.
+**Open downloads:** [Kaggle dataset: 3,840 complex MRI phantoms](https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840) · [Kaggle open CNN weights and source](https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn/4) · [Run and fork the Kaggle training notebook](https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training) · [Hosted 45/45 validation evidence](https://github.com/vinsymoyya/k-sentinel/actions/runs/41551084455). The dataset is CC0-1.0; code and model weights are MIT.
 
 [Read the paper](output/pdf/k-sentinel-preprint.pdf) · [45-check catalogue](VALIDATION.md) · [Kaggle workflow](KAGGLE.md) · [Market analysis](research/MARKET_ANALYSIS.md) · [Protocol](RESEARCH_PROTOCOL.md) · [Full results](results/main/summary.json) · [Contribute](CONTRIBUTING.md)
 

@@ -50,3 +50,17 @@ python scripts/run_validation.py --output validation/local
 ```
 
 The successful round-trip integrity record is `validation/kaggle-model-0.2.0.json`. Earlier notebook attempts and the Windows timeout are retained under `validation/attempts/`; they do not count as passing runs.
+
+## Completed hosted run
+
+[Notebook version 3](https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training) completed on CPU with internet disabled: **45 passed, zero failed, zero skipped**, then three complete eight-epoch training runs with QUICK=False. Runtime: Python 3.13.18, NumPy 2.1.3, PyTorch 2.11.0+cpu. Each seed used 512 training, 256 calibration and 512 held-out test subjects.
+
+| Seed | Mean CNN complex NRMSE | Mean zero-fill complex NRMSE |
+|---|---:|---:|
+| 11 | 0.212878 | 0.231545 |
+| 29 | 0.191866 | 0.232343 |
+| 47 | 0.189403 | 0.232962 |
+
+The downloaded reports were independently checked for eight finite epoch losses, declared split counts, 3,840 distinct identities across all seeds, manifest SHA256, checkpoint SHA256, exact test identity membership and recomputed mean errors. Core module and test hashes match the current checkout. Reports/checkpoints are retained in `results/kaggle-0.2.0/`; validation JSON/JUnit and the non-quick run summary are in `validation/kaggle-run-0.2.0/`. The compact integrity record is `validation/kaggle-run-0.2.0.json`.
+
+These retrained checkpoints are separate from the immutable original `results/main/` weights. This is synthetic reconstruction evidence, not clinical efficacy or an improvement to the original paper's low added-error audit sensitivity.

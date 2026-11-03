@@ -15,15 +15,26 @@
     "distinct_cases": 45,
     "local_passed": 45,
     "local_skipped": 0,
-    "hosted": "passed: 45/45, zero skips, on Python 3.11 and 3.12",
-    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/41551084455",
-    "hosted_source_commit": "d0a2b7607de086d7986a6442f968a40fdf91bdff"
+    "hosted": "45/45 with zero skips on GitHub Python 3.11/3.12 and Kaggle Python 3.13",
+    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/41553907399",
+    "hosted_source_commit": "2c30c90ae0a065c04c0050542812bad968059bea",
+    "latest_windows_full_suite": {
+      "passed": 44,
+      "failed": 1,
+      "skipped": 0,
+      "failure": "KS045 training subprocess exceeded 180 seconds",
+      "isolated_retry": "KS045 passed in 55.612 seconds"
+    }
   },
   "kaggle": {
     "dataset": "public; ready; all nine shards listed; 3,840 objects verified locally",
     "dataset_url": "https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840",
-    "model": "public variation created; corrected source bundle upload in progress",
-    "notebook": "prepared locally; hosted execution pending",
-    "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn"
-  }
+    "model": "public; version 4 source bundle and three original checkpoints round-trip SHA256 verified",
+    "notebook": "public; version 3 COMPLETE; 45/45 zero skips; three seeds trained for eight epochs; QUICK=False",
+    "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn/4",
+    "notebook_url": "https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training",
+    "training_test_subjects": 1536,
+    "run_evidence": "validation/kaggle-run-0.2.0.json"
+  },
+  "github_release_url": "https://github.com/vinsymoyya/k-sentinel/releases/tag/v0.2.0"
 }

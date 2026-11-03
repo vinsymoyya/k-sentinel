@@ -1,0 +1,13 @@
+{
+  "quick": false,
+  "validation": {
+    "passed": 45,
+    "total": 45
+  },
+  "training_reports": [
+    "/kaggle/working/training/training_seed47.json",
+    "/kaggle/working/training/training_seed11.json",
+    "/kaggle/working/training/training_seed29.json"
+  ],
+  "scope": "Synthetic methods workflow; no clinical validation"
+}
