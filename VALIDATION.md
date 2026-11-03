@@ -61,6 +61,8 @@ The runner requires exactly **KS001-KS045**, fails on missing or duplicate cases
 
 Three accepted-invalid-input defects are demonstrated against the preserved v0.1.0 implementation in `validation/legacy-regression-evidence.json`. That comparison does not falsify the v0.1.0 results, which used valid inputs. Historical source files and results remain under `results/main/` and the immutable v0.1.0 tag. The new source snapshot prevents later library updates from silently changing the provenance of the original study.
 
+Cross-platform regeneration compares continuous complex values at `rtol=atol=1e-12`, allowing last-bit libm/FFT roundoff (the first Linux run differed from Windows by about 1e-16). File SHA256 digests, subject identities, masks and split membership remain exact checks. Within-host fixed-seed training repeatability is checked exactly. Tolerances do not permit relabelled subjects, changed masks or substantive image changes.
+
 Dataset publication has an additional distribution check, outside this 45-case suite: every exported complex array and acquisition is regenerated and all 3,840 identities are compared with the published split record. See `validation/dataset-0.2.0.json`. The check count is deliberately separate from population sizes, repeated matrix runs and dataset rows.
 
 Not covered: real multicoil scanner physics, motion, external hospital data, demographic performance, biological lesion realism, clinician review, prospective acquisition timing and clinical outcomes. The trained CNN's previously reported weak added-error audit sensitivity remains part of the scientific result.

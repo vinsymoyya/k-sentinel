@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OWNER="vinsymoyya"
 DATASET=f"{OWNER}/k-sentinel-synthetic-mri-3840"
 MODEL=f"{OWNER}/k-sentinel"
-MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/1"
+MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/2"
 NOTEBOOK=f"{OWNER}/k-sentinel-45-checks-and-open-training"
 
 

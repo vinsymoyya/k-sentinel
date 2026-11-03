@@ -11,7 +11,7 @@
     "vinsymoyya/k-sentinel-synthetic-mri-3840"
   ],
   "model_sources": [
-    "vinsymoyya/k-sentinel/pyTorch/residual-cnn/1"
+    "vinsymoyya/k-sentinel/pyTorch/residual-cnn/2"
   ],
   "competition_sources": [],
   "kernel_sources": []

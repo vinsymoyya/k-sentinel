@@ -17,14 +17,22 @@ def verify(folder):
     published=json.loads((ROOT/"results/main/splits.json").read_text())
     expected={row["identity"]:(row["seed"],row["split"]) for row in published}
     actual={}
+    bitwise_equal=True
     for entry in manifest["files"]:
         data=load_partition(folder,entry["split"],entry["seed"])
         regenerated=make_shard(entry["seed"],entry["split"],entry["count"])
-        for key in ARRAYS:np.testing.assert_array_equal(data[key],regenerated[key])
+        for key in ARRAYS:
+            if key in ("truth","initial_values","audit_values"):
+                np.testing.assert_allclose(data[key],regenerated[key],rtol=1e-12,atol=1e-12)
+                bitwise_equal=bitwise_equal and np.array_equal(data[key],regenerated[key])
+            else:
+                np.testing.assert_array_equal(data[key],regenerated[key])
         actual.update({int(identity):(entry["seed"],entry["split"]) for identity in data["identities"]})
     if actual!=expected:raise ValueError("Distributed objects do not match published subject partitions")
     return {"status":"passed","objects_verified":len(actual),"shards_verified":len(manifest["files"]),
-            "all_arrays_regenerate_exactly":True,"published_split_membership_matches":True,
+            "all_numeric_arrays_within_tolerance":True,"numeric_rtol":1e-12,"numeric_atol":1e-12,
+            "numeric_arrays_bitwise_equal_on_this_host":bool(bitwise_equal),"discrete_arrays_exact":True,
+            "published_split_membership_matches":True,
             "manifest_sha256":hashlib.sha256((folder/"manifest.json").read_bytes()).hexdigest(),
             "scope":"Synthetic dataset integrity, not clinical validity"}
 

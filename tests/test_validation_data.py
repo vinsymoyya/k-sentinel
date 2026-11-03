@@ -67,7 +67,9 @@ class DataReliability(unittest.TestCase):
     def test_ks028_export_matches_frozen_published_test_example(self):
         data=make_shard(11,"test",1);measured,mask=observed_kspace(data,0)
         with np.load(ROOT/"results/main/example.npz",allow_pickle=False) as saved:
-            np.testing.assert_array_equal(data["truth"][0],saved["truth"])
+            # libm/FFT implementations can differ by a few double-precision ulps.
+            # Preserve physical values tightly; keep discrete acquisition exact.
+            np.testing.assert_allclose(data["truth"][0],saved["truth"],rtol=1e-12,atol=1e-12)
             np.testing.assert_array_equal(mask,saved["initial_mask"])
-            np.testing.assert_array_equal(measured[:,mask],saved["measured"][:,mask])
+            np.testing.assert_allclose(measured[:,mask],saved["measured"][:,mask],rtol=1e-12,atol=1e-12)
             np.testing.assert_array_equal(data["audit_order"][0],saved["audit_columns"])

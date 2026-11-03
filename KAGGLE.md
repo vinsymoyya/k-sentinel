@@ -3,7 +3,7 @@
 The distribution contains three separate reusable artifacts:
 
 - Dataset: `vinsymoyya/k-sentinel-synthetic-mri-3840` - all 3,840 synthetic subjects in nine split-preserving NPZ shards; CC0-1.0.
-- Model: `vinsymoyya/k-sentinel/pyTorch/residual-cnn/1` - the three open v0.1.0 CNN checkpoints with v0.2.0 source and loading tools; MIT.
+- Model: `vinsymoyya/k-sentinel/pyTorch/residual-cnn/2` - the three open v0.1.0 CNN checkpoints with v0.2.0 source and loading tools; MIT.
 - Notebook: `vinsymoyya/k-sentinel-45-checks-and-open-training` - executes all 45 checks before training three fixed-epoch CNNs on the attached dataset.
 
 Publication and hosted execution must be verified before these identifiers are described as live/completed. See `release_status.json` for the latest verified state. This document does not promise downloads, forks, votes or higher clinical performance.
@@ -20,7 +20,7 @@ python -m ksentinel.training --data data/kaggle --output results/training --seed
 python scripts/verify_checkpoints.py --directory results/training
 ```
 
-The dataset files preserve complex128 precision. Each shard stores `truth` (N,64,64), `initial_columns` (N,16), `initial_values` (N,64,16), `audit_order` (N,8), `audit_values` (N,64,8), `identities`, scalar `seed`, `split`, and `sigma`. All arrays are procedurally generated, with no patient data. The manifest binds every file to its SHA256 and identity allocation.
+The dataset files preserve complex128 precision. Each shard stores `truth` (N,64,64), `initial_columns` (N,16), `initial_values` (N,64,16), `audit_order` (N,8), `audit_values` (N,64,8), `identities`, scalar `seed`, `split`, and `sigma`. All arrays are procedurally generated, with no patient data. The manifest binds every file to its SHA256 and identity allocation. Regeneration uses a 1e-12 numerical tolerance across platforms while file hashes and discrete membership remain exact.
 
 `observed_kspace` builds inputs solely from initially acquired values. It does not read truth or audits. Training uses only training truth as targets; calibration and test data are first read by inference after the fixed training schedule. The notebook runs on CPU with internet disabled, writes safe checkpoints plus per-subject test errors, and does not select a checkpoint using test results. Editing QUICK=True creates a smoke run and must not be presented as the full experiment.
 

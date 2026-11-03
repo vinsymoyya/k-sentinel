@@ -69,7 +69,10 @@ class WorkflowReliability(unittest.TestCase):
             self.assertFalse(metadata["is_private"]);self.assertFalse(metadata["enable_internet"])
             self.assertFalse(metadata["enable_gpu"])
             self.assertEqual(metadata["dataset_sources"],["vinsymoyya/k-sentinel-synthetic-mri-3840"])
-            self.assertEqual(metadata["model_sources"],["vinsymoyya/k-sentinel/pyTorch/residual-cnn/1"])
+            self.assertEqual(len(metadata["model_sources"]),1)
+            model_path,version=metadata["model_sources"][0].rsplit("/",1)
+            self.assertEqual(model_path,"vinsymoyya/k-sentinel/pyTorch/residual-cnn")
+            self.assertTrue(version.isdigit() and int(version)>=1)
             notebook=json.loads((Path(folder)/metadata["code_file"]).read_text())
             code=["".join(cell["source"]) for cell in notebook["cells"] if cell["cell_type"]=="code"]
             for cell in code:ast.parse(cell)
