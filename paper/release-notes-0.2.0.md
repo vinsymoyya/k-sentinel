@@ -4,7 +4,7 @@ The 45 cases cover mathematical/operator invariants, statistical rank calibratio
 
 Default-safe model loading now supports optional checksum verification, strict architecture loading and rejection of nonfinite weights. Reconstruction ignores unacquired coefficients. Audit inputs now reject negative or complex calibration scores and score overflow. Empty images receive explicit validation; the old implementation already rejected them later in its FFT. A regression record demonstrates the three accepted-invalid-input defects against frozen v0.1.0 source.
 
-The full dataset contains **3,840 synthetic complex objects in nine train/calibration/test shards**. Every array regenerates exactly, and all identity memberships match the published experiment. Generated data are CC0-1.0; model weights and code are MIT. No patient data, external atlas or third-party trained weights are included.
+The full dataset contains **3,840 synthetic complex objects in nine train/calibration/test shards**. All numeric arrays regenerate within a declared 1e-12 tolerance across platforms; discrete arrays, file SHA256 checks and identity memberships remain exact. All identity memberships match the published experiment. Generated data are CC0-1.0; model weights and code are MIT. No patient data, external atlas or third-party trained weights are included.
 
 The Kaggle notebook attaches the data and model variation, runs all 45 contracts, trains fixed-epoch CNNs on CPU with internet disabled, and reports held-out synthetic reconstruction errors and downloadable checkpoints. A prepared/uploaded notebook is not a completed hosted experiment; publication and execution states are tracked in `release_status.json` and the retained hosted artifacts.
 

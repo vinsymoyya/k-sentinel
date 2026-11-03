@@ -15,12 +15,15 @@
     "distinct_cases": 45,
     "local_passed": 45,
     "local_skipped": 0,
-    "hosted": "pending"
+    "hosted": "passed: 45/45, zero skips, on Python 3.11 and 3.12",
+    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/41551084455",
+    "hosted_source_commit": "d0a2b7607de086d7986a6442f968a40fdf91bdff"
   },
   "kaggle": {
-    "dataset": "uploaded; creation processing",
+    "dataset": "public; ready; all nine shards listed; 3,840 objects verified locally",
     "dataset_url": "https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840",
-    "model": "prepared locally",
-    "notebook": "prepared locally; hosted execution pending"
+    "model": "public variation created; corrected source bundle upload in progress",
+    "notebook": "prepared locally; hosted execution pending",
+    "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn"
   }
 }

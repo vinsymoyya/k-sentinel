@@ -2,7 +2,11 @@
   "status": "passed",
   "objects_verified": 3840,
   "shards_verified": 9,
-  "all_arrays_regenerate_exactly": true,
+  "all_numeric_arrays_within_tolerance": true,
+  "numeric_rtol": 1e-12,
+  "numeric_atol": 1e-12,
+  "numeric_arrays_bitwise_equal_on_this_host": true,
+  "discrete_arrays_exact": true,
   "published_split_membership_matches": true,
   "manifest_sha256": "38e7d697855ea153c0c11e6958a9b4933398f7e6ba37bbdb550a440325dcb3f1",
   "scope": "Synthetic dataset integrity, not clinical validity"

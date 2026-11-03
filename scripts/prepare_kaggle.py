@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OWNER="vinsymoyya"
 DATASET=f"{OWNER}/k-sentinel-synthetic-mri-3840"
 MODEL=f"{OWNER}/k-sentinel"
-MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/2"
+MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/3"
 NOTEBOOK=f"{OWNER}/k-sentinel-45-checks-and-open-training"
 
 
@@ -28,15 +28,23 @@ Author: [Vinsy Moyya](https://orcid.org/0009-0003-0042-3556). [Code and paper](h
 This notebook runs on CPU with internet disabled. Add the public K-Sentinel dataset and model variation if you fork it. Every original training, calibration and test identity is preserved. The original unreviewed preprint remains a v0.1.0 experimental record; this notebook is the v0.2.0 reproducibility workflow.
 """)
     code("""from pathlib import Path
-import sys, os, zipfile, json, subprocess
-archive = next(Path('/kaggle/input').rglob('k-sentinel-0.2.0-source.zip'))
+import sys, os, zipfile, json, subprocess, shutil
 destination = Path('/kaggle/working')
-with zipfile.ZipFile(archive) as bundle:
-    for item in bundle.namelist():
-        if not (destination / item).resolve().is_relative_to(destination.resolve()):
-            raise ValueError('Archive member escapes working directory')
-    bundle.extractall(destination)
 root = destination / 'k-sentinel-0.2.0'
+archives = list(Path('/kaggle/input').rglob('k-sentinel-0.2.0-source.zip'))
+if len(archives) == 1:
+    with zipfile.ZipFile(archives[0]) as bundle:
+        for item in bundle.namelist():
+            if not (destination / item).resolve().is_relative_to(destination.resolve()):
+                raise ValueError('Archive member escapes working directory')
+        bundle.extractall(destination)
+else:
+    # Kaggle expands uploaded model ZIP files into directories.
+    sources = [p.parents[1] for p in Path('/kaggle/input').rglob('run_validation.py')
+               if p.parent.name == 'scripts' and (p.parents[1] / 'ksentinel').is_dir()]
+    if len(sources) != 1:
+        raise ValueError('Attach exactly one K-Sentinel model source bundle')
+    shutil.copytree(sources[0], root, dirs_exist_ok=True)
 os.chdir(root)
 sys.path.insert(0, str(root))
 import numpy as np, torch
