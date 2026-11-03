@@ -5,8 +5,8 @@
   "failed": 0,
   "skipped": 0,
   "status": "passed",
-  "recorded_at_utc": "2026-11-03T00:12:21.845230+00:00",
-  "source_commit": "d0a2b7607de086d7986a6442f968a40fdf91bdff",
+  "recorded_at_utc": "2026-11-03T00:52:46.044508+00:00",
+  "source_commit": "7ce5d9215e94949d84c4c3ba48da8724a25dd046",
   "environment": {
     "python": "3.11.17",
     "numpy": "2.4.6",
@@ -31,7 +31,7 @@
     "tests/test_validation_workflows.py": "01da4b48c6ce303edd3132cb196a7a30de300c318249e32f9f2418863788496e",
     "scripts/build_publication.py": "187986674e9b1390e263fcc20a215174cc39299231329030d336b0ea7c8a5c31",
     "scripts/export_demo.py": "568f5a2d63313c6a66883b3d5b7a6c915595e70350226d8642e128f0c0bab607",
-    "scripts/prepare_kaggle.py": "fafb32e740a6d00a4ba4cfa61c43cb9330231b55a9474bcb5e3d725ad7c1fbee",
+    "scripts/prepare_kaggle.py": "91b162c2b0d80dc005adbcd39131a1f411f0e79bfe6b49924caccf9e7547fabc",
     "scripts/run_validation.py": "572ab7d0e43aed5b7b20f51d105ae1b4ee43dd1343a9fd6a306ec6b34ddb3f2f",
     "scripts/verify_checkpoints.py": "d4e08da2449b2c0d6f19739ad775721e0d91d61bdb914a43207032fe67f6688f",
     "scripts/verify_kaggle_data.py": "1362587c9b7977cd0d4931de2ef93340d1ddca6e1fc0db93eb3d861e654dc588",
@@ -42,271 +42,271 @@
       "id": "KS001",
       "test": "test_science.ScientificContracts.test_unitarity_and_inverse",
       "status": "passed",
-      "seconds": 0.0006220650000017258
+      "seconds": 0.0007565290000002278
     },
     {
       "id": "KS002",
       "test": "test_science.ScientificContracts.test_projection_cannot_see_injected_structure",
       "status": "passed",
-      "seconds": 0.003844960999998648
+      "seconds": 0.004989844000007793
     },
     {
       "id": "KS003",
       "test": "test_science.ScientificContracts.test_frozen_audit_can_be_evaded",
       "status": "passed",
-      "seconds": 0.001379975000006084
+      "seconds": 0.0018280649999979914
     },
     {
       "id": "KS004",
       "test": "test_science.ScientificContracts.test_audit_fraction_and_independence",
       "status": "passed",
-      "seconds": 0.012659333999991418
+      "seconds": 0.01746348599999692
     },
     {
       "id": "KS005",
       "test": "test_science.ScientificContracts.test_exact_rank_threshold_and_ties",
       "status": "passed",
-      "seconds": 0.00011591500000918131
+      "seconds": 0.00015573999999674015
     },
     {
       "id": "KS006",
       "test": "test_science.ScientificContracts.test_wilson_known_boundary_and_auc",
       "status": "passed",
-      "seconds": 0.00011880799999630653
+      "seconds": 0.0001390500000013617
     },
     {
       "id": "KS007",
       "test": "test_science.ScientificContracts.test_measured_fusion_reduces_noiseless_error",
       "status": "passed",
-      "seconds": 0.001040173999996341
+      "seconds": 0.001371544999997809
     },
     {
       "id": "KS008",
       "test": "test_public_audit.ExternalAudit.test_analytic_signal_rejection",
       "status": "passed",
-      "seconds": 0.006063767000000553
+      "seconds": 0.00783380100000386
     },
     {
       "id": "KS009",
       "test": "test_public_audit.ExternalAudit.test_no_information_does_not_imply_safe",
       "status": "passed",
-      "seconds": 0.00020522900000230493
+      "seconds": 0.00025826100001324903
     },
     {
       "id": "KS010",
       "test": "test_public_audit.ExternalAudit.test_invalid_masks_and_values",
       "status": "passed",
-      "seconds": 0.00018609899998978108
+      "seconds": 0.00023691200000541812
     },
     {
       "id": "KS011",
       "test": "test_validation_audit.AuditReliability.test_ks011_negative_calibration_rejected",
       "status": "passed",
-      "seconds": 0.00011578400000189504
+      "seconds": 0.0001466829999969832
     },
     {
       "id": "KS012",
       "test": "test_validation_audit.AuditReliability.test_ks012_complex_calibration_rejected",
       "status": "passed",
-      "seconds": 9.246900000903224e-05
+      "seconds": 0.0001536259999994627
     },
     {
       "id": "KS013",
       "test": "test_validation_audit.AuditReliability.test_ks013_empty_spatial_dimension_rejected",
       "status": "passed",
-      "seconds": 3.879799999140232e-05
+      "seconds": 6.239699999355253e-05
     },
     {
       "id": "KS014",
       "test": "test_validation_audit.AuditReliability.test_ks014_score_overflow_fails_closed",
       "status": "passed",
-      "seconds": 0.00022049199999685243
+      "seconds": 0.00023927499999842894
     },
     {
       "id": "KS015",
       "test": "test_validation_audit.AuditReliability.test_ks015_invalid_alpha_rejected",
       "status": "passed",
-      "seconds": 0.0002556240000046728
+      "seconds": 0.0003235530000011977
     },
     {
       "id": "KS016",
       "test": "test_validation_audit.AuditReliability.test_ks016_invalid_noise_scale_rejected",
       "status": "passed",
-      "seconds": 0.000383636999998771
+      "seconds": 0.0005258590000067898
     },
     {
       "id": "KS017",
       "test": "test_validation_audit.AuditReliability.test_ks017_rank_pvalue_handles_ties_conservatively",
       "status": "passed",
-      "seconds": 0.0002218340000013086
+      "seconds": 0.0002391160000030368
     },
     {
       "id": "KS018",
       "test": "test_validation_audit.AuditReliability.test_ks018_small_calibration_is_json_serializable_and_unflagged",
       "status": "passed",
-      "seconds": 0.00020217399999467034
+      "seconds": 0.00022604099999057325
     },
     {
       "id": "KS019",
       "test": "test_validation_audit.AuditReliability.test_ks019_complex_phase_disagreement_is_detected",
       "status": "passed",
-      "seconds": 0.00017957000000023982
+      "seconds": 0.0002877259999962689
     },
     {
       "id": "KS020",
       "test": "test_validation_audit.AuditReliability.test_ks020_score_invariant_to_consistent_unit_change",
       "status": "passed",
-      "seconds": 0.0002901269999995293
+      "seconds": 0.00035868800000571355
     },
     {
       "id": "KS021",
       "test": "test_validation_data.DataReliability.test_ks021_valid_shards_keep_subject_split_membership",
       "status": "passed",
-      "seconds": 0.004904854000002956
+      "seconds": 0.0066307400000056305
     },
     {
       "id": "KS022",
       "test": "test_validation_data.DataReliability.test_ks022_acquired_audit_overlap_is_rejected",
       "status": "passed",
-      "seconds": 0.0008874640000016143
+      "seconds": 0.001243195999990121
     },
     {
       "id": "KS023",
       "test": "test_validation_data.DataReliability.test_ks023_cross_split_identity_reuse_is_rejected",
       "status": "passed",
-      "seconds": 0.0004986090000045351
+      "seconds": 0.0006070010000058801
     },
     {
       "id": "KS024",
       "test": "test_validation_data.DataReliability.test_ks024_declared_split_must_match_identity_range",
       "status": "passed",
-      "seconds": 0.0008135730000020658
+      "seconds": 0.0010605549999951336
     },
     {
       "id": "KS025",
       "test": "test_validation_data.DataReliability.test_ks025_changed_shard_bytes_are_rejected",
       "status": "passed",
-      "seconds": 0.008648913000001812
+      "seconds": 0.011277313999997318
     },
     {
       "id": "KS026",
       "test": "test_validation_data.DataReliability.test_ks026_manifest_count_mismatch_is_rejected",
       "status": "passed",
-      "seconds": 0.000430316999995739
+      "seconds": 0.0005331530000063367
     },
     {
       "id": "KS027",
       "test": "test_validation_data.DataReliability.test_ks027_model_input_is_independent_of_truth_and_audit",
       "status": "passed",
-      "seconds": 0.0009154770000066037
+      "seconds": 0.001261510000006183
     },
     {
       "id": "KS028",
       "test": "test_validation_data.DataReliability.test_ks028_export_matches_frozen_published_test_example",
       "status": "passed",
-      "seconds": 0.0019739779999952134
+      "seconds": 0.00259379100000956
     },
     {
       "id": "KS029",
       "test": "test_validation_model.ModelReliability.test_ks029_all_open_checkpoints_load_default_safely",
       "status": "passed",
-      "seconds": 0.0052788870000028965
+      "seconds": 0.0075130249999944
     },
     {
       "id": "KS030",
       "test": "test_validation_model.ModelReliability.test_ks030_checkpoint_digest_mismatch_is_rejected",
       "status": "passed",
-      "seconds": 0.00016750199999648885
+      "seconds": 0.00019337999999891053
     },
     {
       "id": "KS031",
       "test": "test_validation_model.ModelReliability.test_ks031_nonfinite_model_weights_are_rejected",
       "status": "passed",
-      "seconds": 0.002188361000008854
+      "seconds": 0.0029943180000060465
     },
     {
       "id": "KS032",
       "test": "test_validation_model.ModelReliability.test_ks032_incompatible_architecture_is_rejected",
       "status": "passed",
-      "seconds": 0.0010867940000025555
+      "seconds": 0.0014771919999958527
     },
     {
       "id": "KS033",
       "test": "test_validation_model.ModelReliability.test_ks033_inference_preserves_acquired_measurements",
       "status": "passed",
-      "seconds": 0.003992092000004277
+      "seconds": 0.004041208000003849
     },
     {
       "id": "KS034",
       "test": "test_validation_model.ModelReliability.test_ks034_unacquired_values_cannot_leak_into_inference",
       "status": "passed",
-      "seconds": 0.0027536099999991848
+      "seconds": 0.003890095999992127
     },
     {
       "id": "KS035",
       "test": "test_validation_model.ModelReliability.test_ks035_complex_phase_survives_full_acquisition",
       "status": "passed",
-      "seconds": 0.0016869070000069541
+      "seconds": 0.0023501480000049924
     },
     {
       "id": "KS036",
       "test": "test_validation_model.ModelReliability.test_ks036_checkpoint_reload_preserves_prediction",
       "status": "passed",
-      "seconds": 0.004282940000010171
+      "seconds": 0.006309082000001354
     },
     {
       "id": "KS037",
       "test": "test_validation_model.ModelReliability.test_ks037_real_training_updates_weights_with_finite_loss",
       "status": "passed",
-      "seconds": 0.0015673669999927142
+      "seconds": 0.002015323999998486
     },
     {
       "id": "KS038",
       "test": "test_validation_model.ModelReliability.test_ks038_fixed_seed_training_is_reproducible",
       "status": "passed",
-      "seconds": 0.020754793999998356
+      "seconds": 0.0272800359999934
     },
     {
       "id": "KS039",
       "test": "test_validation_workflows.WorkflowReliability.test_ks039_external_audit_cli_emits_strict_json",
       "status": "passed",
-      "seconds": 0.10076867600000128
+      "seconds": 0.13464346899999668
     },
     {
       "id": "KS040",
       "test": "test_validation_workflows.WorkflowReliability.test_ks040_cli_does_not_unpickle_object_arrays",
       "status": "passed",
-      "seconds": 0.0896740749999907
+      "seconds": 0.12292323699999486
     },
     {
       "id": "KS041",
       "test": "test_validation_workflows.WorkflowReliability.test_ks041_small_benchmark_produces_consistent_portable_records",
       "status": "passed",
-      "seconds": 0.3604158159999997
+      "seconds": 0.5105174269999964
     },
     {
       "id": "KS042",
       "test": "test_validation_workflows.WorkflowReliability.test_ks042_invalid_experiment_selectors_fail_before_writing",
       "status": "passed",
-      "seconds": 0.18172525399999984
+      "seconds": 0.248188386999999
     },
     {
       "id": "KS043",
       "test": "test_validation_workflows.WorkflowReliability.test_ks043_frozen_publication_evidence_reaggregates",
       "status": "passed",
-      "seconds": 1.8335536800000085
+      "seconds": 2.3378416089999945
     },
     {
       "id": "KS044",
       "test": "test_validation_workflows.WorkflowReliability.test_ks044_public_notebook_is_parseable_offline_and_connected",
       "status": "passed",
-      "seconds": 0.003080891999999835
+      "seconds": 0.00559840900000097
     },
     {
       "id": "KS045",
       "test": "test_validation_workflows.WorkflowReliability.test_ks045_downloaded_data_training_cli_is_end_to_end",
       "status": "passed",
-      "seconds": 2.39203303299999
+      "seconds": 3.1070273130000032
     }
   ],
   "scope": "Software and synthetic scientific contracts; not clinical validation or an estimate of medical reliability"

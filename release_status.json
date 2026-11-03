@@ -16,8 +16,8 @@
     "local_passed": 45,
     "local_skipped": 0,
     "hosted": "45/45 with zero skips on GitHub Python 3.11/3.12 and Kaggle Python 3.13",
-    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/41553907399",
-    "hosted_source_commit": "2c30c90ae0a065c04c0050542812bad968059bea",
+    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/41555879154",
+    "hosted_source_commit": "7ce5d9215e94949d84c4c3ba48da8724a25dd046",
     "latest_windows_full_suite": {
       "passed": 44,
       "failed": 1,
