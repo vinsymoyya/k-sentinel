@@ -1,0 +1,314 @@
+{
+  "total": 45,
+  "executed": 45,
+  "passed": 44,
+  "failed": 1,
+  "skipped": 0,
+  "status": "failed",
+  "recorded_at_utc": "2026-11-03T00:36:27.553763+00:00",
+  "source_commit": null,
+  "environment": {
+    "python": "3.13.18",
+    "numpy": "2.1.3",
+    "torch": "2.11.0+cpu",
+    "platform": "Linux"
+  },
+  "source_sha256": {
+    "ksentinel/__init__.py": "78547547ec6c1392769d5a26e7e9fdfd624033bbfb5fc509a17bcfaadb419bc0",
+    "ksentinel/audit.py": "1f234f7bf697a42154f8c5a2b2cd591b59e30023e29e578b4c17ebbf4ca435bd",
+    "ksentinel/benchmark.py": "e3f6d3c2cb4c1906e774397a5205829f635ee2d18f03d5a691525f9f547a39a3",
+    "ksentinel/core.py": "8742610677816ca70406b8b2747771c71dfab5fe2b601043b1e32f070124902a",
+    "ksentinel/dataset.py": "5d7fd0b2c65ddaaf35e612c1909c4360ee89a0bfe0f8e71e16bdeb76805c68e0",
+    "ksentinel/learned.py": "a9c0ea8297cfee6a850256a026501df0d0fd8d846b63f41cc011103e68106032",
+    "ksentinel/model_io.py": "ee3511c3317ee080a3d9ccb61b06a3fb4fcfd330fef1bf7281dca635e7947b2d",
+    "ksentinel/training.py": "66f2a756961948439df548c0bf83a0029e1ff7ded54fbb7071f84976329c2f70",
+    "tests/support.py": "8824618f3151bef1c2b5758d3ded04b6b02e41b36579924ada347ad2680fa260",
+    "tests/test_public_audit.py": "332252c047ca6ca2b962b57ddaf7399132e29a40404c53190e9a66c3a7db72ff",
+    "tests/test_science.py": "f0465d34a00e3bfe5eec5229ee9a5e627148d8d88015b2190a234eeb50b92541",
+    "tests/test_validation_audit.py": "4c045d5bea75706c14cfc7f74a7d22fe556032e3c2e9e644444214da7cd3fae5",
+    "tests/test_validation_data.py": "f3759ee824c785b5f14f75d4c326a2b9a788064cc8ac83e8708651c714f10633",
+    "tests/test_validation_model.py": "fb431c13f776396223107a183bf3c30282aae4e1b93a3032505647b7eb07cea7",
+    "tests/test_validation_workflows.py": "01da4b48c6ce303edd3132cb196a7a30de300c318249e32f9f2418863788496e",
+    "scripts/build_publication.py": "187986674e9b1390e263fcc20a215174cc39299231329030d336b0ea7c8a5c31",
+    "scripts/export_demo.py": "568f5a2d63313c6a66883b3d5b7a6c915595e70350226d8642e128f0c0bab607",
+    "scripts/prepare_kaggle.py": "3ba4b07de787591e51b003c5592ded6dd60f79d4497df9b56f8dc032b6a82329",
+    "scripts/run_validation.py": "572ab7d0e43aed5b7b20f51d105ae1b4ee43dd1343a9fd6a306ec6b34ddb3f2f",
+    "scripts/verify_checkpoints.py": "d4e08da2449b2c0d6f19739ad775721e0d91d61bdb914a43207032fe67f6688f",
+    "scripts/verify_kaggle_data.py": "1362587c9b7977cd0d4931de2ef93340d1ddca6e1fc0db93eb3d861e654dc588",
+    "scripts/verify_results.py": "f245afbaaab62aad49b622bfc93ef45379f6acc34b1851144f08f831cddaab64"
+  },
+  "checks": [
+    {
+      "id": "KS001",
+      "test": "test_science.ScientificContracts.test_unitarity_and_inverse",
+      "status": "passed",
+      "seconds": 0.0016927519999967444
+    },
+    {
+      "id": "KS002",
+      "test": "test_science.ScientificContracts.test_projection_cannot_see_injected_structure",
+      "status": "passed",
+      "seconds": 0.020389738000005764
+    },
+    {
+      "id": "KS003",
+      "test": "test_science.ScientificContracts.test_frozen_audit_can_be_evaded",
+      "status": "passed",
+      "seconds": 0.005264957000008508
+    },
+    {
+      "id": "KS004",
+      "test": "test_science.ScientificContracts.test_audit_fraction_and_independence",
+      "status": "passed",
+      "seconds": 0.05085272399998075
+    },
+    {
+      "id": "KS005",
+      "test": "test_science.ScientificContracts.test_exact_rank_threshold_and_ties",
+      "status": "passed",
+      "seconds": 0.0017916959999979554
+    },
+    {
+      "id": "KS006",
+      "test": "test_science.ScientificContracts.test_wilson_known_boundary_and_auc",
+      "status": "passed",
+      "seconds": 0.0021113159999686104
+    },
+    {
+      "id": "KS007",
+      "test": "test_science.ScientificContracts.test_measured_fusion_reduces_noiseless_error",
+      "status": "passed",
+      "seconds": 0.003934643000036431
+    },
+    {
+      "id": "KS008",
+      "test": "test_public_audit.ExternalAudit.test_analytic_signal_rejection",
+      "status": "passed",
+      "seconds": 0.021064986999988378
+    },
+    {
+      "id": "KS009",
+      "test": "test_public_audit.ExternalAudit.test_no_information_does_not_imply_safe",
+      "status": "passed",
+      "seconds": 0.0007026379999501842
+    },
+    {
+      "id": "KS010",
+      "test": "test_public_audit.ExternalAudit.test_invalid_masks_and_values",
+      "status": "passed",
+      "seconds": 0.0036480070000379783
+    },
+    {
+      "id": "KS011",
+      "test": "test_validation_audit.AuditReliability.test_ks011_negative_calibration_rejected",
+      "status": "passed",
+      "seconds": 0.00032321599996976147
+    },
+    {
+      "id": "KS012",
+      "test": "test_validation_audit.AuditReliability.test_ks012_complex_calibration_rejected",
+      "status": "passed",
+      "seconds": 0.0002078699999970013
+    },
+    {
+      "id": "KS013",
+      "test": "test_validation_audit.AuditReliability.test_ks013_empty_spatial_dimension_rejected",
+      "status": "passed",
+      "seconds": 0.00012050900005533549
+    },
+    {
+      "id": "KS014",
+      "test": "test_validation_audit.AuditReliability.test_ks014_score_overflow_fails_closed",
+      "status": "passed",
+      "seconds": 0.0004914830000188886
+    },
+    {
+      "id": "KS015",
+      "test": "test_validation_audit.AuditReliability.test_ks015_invalid_alpha_rejected",
+      "status": "passed",
+      "seconds": 0.0006477710000467596
+    },
+    {
+      "id": "KS016",
+      "test": "test_validation_audit.AuditReliability.test_ks016_invalid_noise_scale_rejected",
+      "status": "passed",
+      "seconds": 0.0009262620000072275
+    },
+    {
+      "id": "KS017",
+      "test": "test_validation_audit.AuditReliability.test_ks017_rank_pvalue_handles_ties_conservatively",
+      "status": "passed",
+      "seconds": 0.0004690250000294327
+    },
+    {
+      "id": "KS018",
+      "test": "test_validation_audit.AuditReliability.test_ks018_small_calibration_is_json_serializable_and_unflagged",
+      "status": "passed",
+      "seconds": 0.0005172499999730462
+    },
+    {
+      "id": "KS019",
+      "test": "test_validation_audit.AuditReliability.test_ks019_complex_phase_disagreement_is_detected",
+      "status": "passed",
+      "seconds": 0.00044368999999733205
+    },
+    {
+      "id": "KS020",
+      "test": "test_validation_audit.AuditReliability.test_ks020_score_invariant_to_consistent_unit_change",
+      "status": "passed",
+      "seconds": 0.000677239000026475
+    },
+    {
+      "id": "KS021",
+      "test": "test_validation_data.DataReliability.test_ks021_valid_shards_keep_subject_split_membership",
+      "status": "passed",
+      "seconds": 0.015365543999962483
+    },
+    {
+      "id": "KS022",
+      "test": "test_validation_data.DataReliability.test_ks022_acquired_audit_overlap_is_rejected",
+      "status": "passed",
+      "seconds": 0.002727435999986483
+    },
+    {
+      "id": "KS023",
+      "test": "test_validation_data.DataReliability.test_ks023_cross_split_identity_reuse_is_rejected",
+      "status": "passed",
+      "seconds": 0.0011176560000194513
+    },
+    {
+      "id": "KS024",
+      "test": "test_validation_data.DataReliability.test_ks024_declared_split_must_match_identity_range",
+      "status": "passed",
+      "seconds": 0.0022438480000346317
+    },
+    {
+      "id": "KS025",
+      "test": "test_validation_data.DataReliability.test_ks025_changed_shard_bytes_are_rejected",
+      "status": "passed",
+      "seconds": 0.023394166999992194
+    },
+    {
+      "id": "KS026",
+      "test": "test_validation_data.DataReliability.test_ks026_manifest_count_mismatch_is_rejected",
+      "status": "passed",
+      "seconds": 0.001200100999994902
+    },
+    {
+      "id": "KS027",
+      "test": "test_validation_data.DataReliability.test_ks027_model_input_is_independent_of_truth_and_audit",
+      "status": "passed",
+      "seconds": 0.0029705390000458465
+    },
+    {
+      "id": "KS028",
+      "test": "test_validation_data.DataReliability.test_ks028_export_matches_frozen_published_test_example",
+      "status": "passed",
+      "seconds": 0.005478082999957223
+    },
+    {
+      "id": "KS029",
+      "test": "test_validation_model.ModelReliability.test_ks029_all_open_checkpoints_load_default_safely",
+      "status": "passed",
+      "seconds": 0.012940512000000126
+    },
+    {
+      "id": "KS030",
+      "test": "test_validation_model.ModelReliability.test_ks030_checkpoint_digest_mismatch_is_rejected",
+      "status": "passed",
+      "seconds": 0.000469270999985838
+    },
+    {
+      "id": "KS031",
+      "test": "test_validation_model.ModelReliability.test_ks031_nonfinite_model_weights_are_rejected",
+      "status": "passed",
+      "seconds": 0.013046866000024693
+    },
+    {
+      "id": "KS032",
+      "test": "test_validation_model.ModelReliability.test_ks032_incompatible_architecture_is_rejected",
+      "status": "passed",
+      "seconds": 0.007310595000035391
+    },
+    {
+      "id": "KS033",
+      "test": "test_validation_model.ModelReliability.test_ks033_inference_preserves_acquired_measurements",
+      "status": "passed",
+      "seconds": 0.028732914999977766
+    },
+    {
+      "id": "KS034",
+      "test": "test_validation_model.ModelReliability.test_ks034_unacquired_values_cannot_leak_into_inference",
+      "status": "passed",
+      "seconds": 0.008247016000041185
+    },
+    {
+      "id": "KS035",
+      "test": "test_validation_model.ModelReliability.test_ks035_complex_phase_survives_full_acquisition",
+      "status": "passed",
+      "seconds": 0.005028175999996165
+    },
+    {
+      "id": "KS036",
+      "test": "test_validation_model.ModelReliability.test_ks036_checkpoint_reload_preserves_prediction",
+      "status": "passed",
+      "seconds": 0.013214431999983844
+    },
+    {
+      "id": "KS037",
+      "test": "test_validation_model.ModelReliability.test_ks037_real_training_updates_weights_with_finite_loss",
+      "status": "passed",
+      "seconds": 0.009730581000042093
+    },
+    {
+      "id": "KS038",
+      "test": "test_validation_model.ModelReliability.test_ks038_fixed_seed_training_is_reproducible",
+      "status": "passed",
+      "seconds": 0.03982059600002685
+    },
+    {
+      "id": "KS039",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks039_external_audit_cli_emits_strict_json",
+      "status": "passed",
+      "seconds": 0.2548870940000256
+    },
+    {
+      "id": "KS040",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks040_cli_does_not_unpickle_object_arrays",
+      "status": "passed",
+      "seconds": 0.28406936499999347
+    },
+    {
+      "id": "KS041",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks041_small_benchmark_produces_consistent_portable_records",
+      "status": "passed",
+      "seconds": 0.9426418719999674
+    },
+    {
+      "id": "KS042",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks042_invalid_experiment_selectors_fail_before_writing",
+      "status": "passed",
+      "seconds": 0.48108897600002365
+    },
+    {
+      "id": "KS043",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks043_frozen_publication_evidence_reaggregates",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"/kaggle/working/k-sentinel-0.2.0/tests/test_validation_workflows.py\", line 60, in test_ks043_frozen_publication_evidence_reaggregates\n    self.assertEqual(run.returncode,0,run.stderr)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0 : Traceback (most recent call last):\n  File \"/kaggle/working/k-sentinel-0.2.0/scripts/verify_results.py\", line 30, in <module>\n    with gzip.open(result/\"subjects.csv.gz\",\"rt\",encoding=\"utf8\",newline=\"\") as stream:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/gzip.py\", line 66, in open\n    binary_file = GzipFile(filename, gz_mode, compresslevel)\n  File \"/usr/lib/python3.13/gzip.py\", line 205, in __init__\n    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')\n                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/k-sentinel-0.2.0/results/main/subjects.csv.gz'\n\n",
+      "seconds": 0.2528661270000043
+    },
+    {
+      "id": "KS044",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks044_public_notebook_is_parseable_offline_and_connected",
+      "status": "passed",
+      "seconds": 0.006043834000024617
+    },
+    {
+      "id": "KS045",
+      "test": "test_validation_workflows.WorkflowReliability.test_ks045_downloaded_data_training_cli_is_end_to_end",
+      "status": "passed",
+      "seconds": 4.362736943000016
+    }
+  ],
+  "scope": "Software and synthetic scientific contracts; not clinical validation or an estimate of medical reliability"
+}

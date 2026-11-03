@@ -1,0 +1,9 @@
+{
+  "case": "KS045",
+  "status": "passed",
+  "command": "python -m unittest discover -s tests -p test_validation_workflows.py -k ks045 -v",
+  "platform": "Windows",
+  "cases_run": 1,
+  "seconds": 55.612,
+  "scope": "Isolated rerun after full-suite subprocess timeout; not a new full-suite pass"
+}

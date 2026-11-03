@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OWNER="vinsymoyya"
 DATASET=f"{OWNER}/k-sentinel-synthetic-mri-3840"
 MODEL=f"{OWNER}/k-sentinel"
-MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/3"
+MODEL_SOURCE=f"{MODEL}/pyTorch/residual-cnn/4"
 NOTEBOOK=f"{OWNER}/k-sentinel-45-checks-and-open-training"
 
 
@@ -31,7 +31,9 @@ This notebook runs on CPU with internet disabled. Add the public K-Sentinel data
 import sys, os, zipfile, json, subprocess, shutil
 destination = Path('/kaggle/working')
 root = destination / 'k-sentinel-0.2.0'
-archives = list(Path('/kaggle/input').rglob('k-sentinel-0.2.0-source.zip'))
+archives = list(Path('/kaggle/input').rglob('k-sentinel-0.2.0-source.bundle'))
+if not archives:
+    archives = list(Path('/kaggle/input').rglob('k-sentinel-0.2.0-source.zip'))
 if len(archives) == 1:
     with zipfile.ZipFile(archives[0]) as bundle:
         for item in bundle.namelist():
@@ -146,7 +148,7 @@ Passing software tests does not establish clinical efficacy. The published CNN a
     (stage/"model/model-metadata.json").write_text(json.dumps(model,indent=2)+"\n")
     instance={"ownerSlug":OWNER,"modelSlug":"k-sentinel","instanceSlug":"residual-cnn","framework":"pyTorch",
               "overview":"Three default-safe residual CNN checkpoints trained only on synthetic MRI phantoms. Native reconstruction baseline; no clinical validation.",
-              "usage":"# Load\n\nExtract k-sentinel-0.2.0-source.zip and run the README quickstart.\n\n```python\nfrom ksentinel.model_io import load_model, reconstruct\nmodel = load_model('cnn_seed11.pt')\nimage = reconstruct(model, measured_kspace, initial_mask)\n```\n\nKeep audit values and test subjects out of training. Complete CPU training and 45-check notebook are linked from the repository.\n",
+              "usage":"# Load\n\nRun the paired offline notebook, or unpack the ZIP-format k-sentinel-0.2.0-source.bundle with python -m zipfile -e k-sentinel-0.2.0-source.bundle . and follow the extracted README quickstart.\n\n```python\nfrom ksentinel.model_io import load_model, reconstruct\nmodel = load_model('cnn_seed11.pt')\nimage = reconstruct(model, measured_kspace, initial_mask)\n```\n\nKeep audit values and test subjects out of training. Complete CPU training and 45-check notebook are linked from the repository.\n",
               "licenseName":"MIT","fineTunable":True,"trainingData":[f"https://www.kaggle.com/datasets/{DATASET}"],"modelInstanceType":"Unspecified"}
     (stage/"variation/model-instance-metadata.json").write_text(json.dumps(instance,indent=2)+"\n")
     write_notebook(ROOT/"kaggle/notebook")
@@ -159,7 +161,10 @@ Passing software tests does not establish clinical efficacy. The published CNN a
         shutil.copy2(ROOT/"MODEL_CARD.md",stage/"variation/MODEL_CARD.md")
         shutil.copy2(ROOT/"LICENSE",stage/"variation/LICENSE")
         files=subprocess.check_output(["git","ls-files","--cached","--others","--exclude-standard"],cwd=ROOT,text=True).splitlines()
-        archive=stage/"variation/k-sentinel-0.2.0-source.zip"
+        # Neutral suffix prevents Kaggle recursively expanding ZIP/GZ research artifacts.
+        archive=stage/"variation/k-sentinel-0.2.0-source.bundle"
+        legacy_archive=stage/"variation/k-sentinel-0.2.0-source.zip"
+        if legacy_archive.exists():legacy_archive.unlink()
         with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED) as z:
             for name in files:
                 path=ROOT/name

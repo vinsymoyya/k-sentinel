@@ -1,11 +1,12 @@
 {
-  "model_version": 2,
+  "model_version": 4,
   "status": "passed",
   "checkpoint_sha256": {
     "cnn_seed11.pt": "4d6995305dbadc7a3a4516203783cf76e4c16dac742729e8c6d1bc5624465d2d",
     "cnn_seed29.pt": "1da1aba6587989b0316cb3f1c5b7471da4940943523af4c30fbd1db9cb9a4a4f",
     "cnn_seed47.pt": "38250efd56d83e1b3932a28e5f91dbadf38a2131ce8fb6b0fcbc998c21b70cf4"
   },
-  "source_layout": "Kaggle expanded uploaded ZIP into directory",
-  "cross_platform_tolerance_present": true
+  "source_bundle_sha256": "5017028ac0e15b0351618b16ca43845bf46a0b3bb27443af5211bc3276f90c3c",
+  "source_layout": "ZIP-format .bundle file preserved byte for byte by Kaggle",
+  "frozen_compressed_results_preserved": true
 }

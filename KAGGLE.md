@@ -3,14 +3,14 @@
 The distribution contains three separate reusable artifacts:
 
 - Dataset: `vinsymoyya/k-sentinel-synthetic-mri-3840` - all 3,840 synthetic subjects in nine split-preserving NPZ shards; CC0-1.0.
-- Model: `vinsymoyya/k-sentinel/pyTorch/residual-cnn/2` - the three open v0.1.0 CNN checkpoints with v0.2.0 source and loading tools; MIT.
+- Model: `vinsymoyya/k-sentinel/pyTorch/residual-cnn/4` - the three open v0.1.0 CNN checkpoints with v0.2.0 source and loading tools; MIT.
 - Notebook: `vinsymoyya/k-sentinel-45-checks-and-open-training` - executes all 45 checks before training three fixed-epoch CNNs on the attached dataset.
 
-Publication and hosted execution must be verified before these identifiers are described as live/completed. See `release_status.json` for the latest verified state. This document does not promise downloads, forks, votes or higher clinical performance.
+The dataset and model are public. The model version 4 download was verified byte for byte against the staged source bundle and all three original checkpoints. See `release_status.json` for the notebook execution state and retained reports. This document does not promise downloads, forks, votes or higher clinical performance.
 
 ## Download and train
 
-Once published, use the official Kaggle CLI or the dataset/model page's download control:
+Use the official Kaggle CLI or the dataset/model page's download control:
 
 ```bash
 kaggle datasets download -d vinsymoyya/k-sentinel-synthetic-mri-3840 --unzip -p data/kaggle
@@ -37,3 +37,16 @@ kaggle kernels push -p dist/kaggle/notebook --timeout 3600
 Preparing files does not publish them. Creating a notebook version queues execution; wait for its completed status and inspect output before calling it successful. Never put API tokens or passwords in this repository or notebook. Authentication remains in the normal Kaggle CLI/browser flow outside the checkout.
 
 The notebook's model attachment includes the original checkpoints and source archive, so no download from GitHub is needed during execution. Code licensing and generated-data licensing remain separate. Dataset reproduction and negative audit results are useful contributions; download totals measure observed adoption rather than scientific validity.
+
+## Portable source bundle
+
+Kaggle model version 4 carries `k-sentinel-0.2.0-source.bundle`, a standard ZIP payload with a neutral suffix. This preserves the original compressed CSV results: Kaggle recursively expanded the earlier `.zip`/`.gz` distribution and check KS043 correctly failed. The notebook opens the payload with Python `zipfile`; no network access is needed. For standalone use after downloading the model:
+
+```bash
+python -m zipfile -e k-sentinel-0.2.0-source.bundle .
+cd k-sentinel-0.2.0
+python -m pip install -e ".[learned]"
+python scripts/run_validation.py --output validation/local
+```
+
+The successful round-trip integrity record is `validation/kaggle-model-0.2.0.json`. Earlier notebook attempts and the Windows timeout are retained under `validation/attempts/`; they do not count as passing runs.

@@ -66,3 +66,9 @@ Cross-platform regeneration compares continuous complex values at `rtol=atol=1e-
 Dataset publication has an additional distribution check, outside this 45-case suite: every exported complex array and acquisition is regenerated and all 3,840 identities are compared with the published split record. See `validation/dataset-0.2.0.json`. The check count is deliberately separate from population sizes, repeated matrix runs and dataset rows.
 
 Not covered: real multicoil scanner physics, motion, external hospital data, demographic performance, biological lesion realism, clinician review, prospective acquisition timing and clinical outcomes. The trained CNN's previously reported weak added-error audit sensitivity remains part of the scientific result.
+
+## Execution history
+
+The first Kaggle notebook attempt failed before validation because Kaggle expanded the uploaded ZIP. The second ran all 45 cases: 44 passed and KS043 correctly failed because recursive decompression removed the expected frozen `.csv.gz` artifact. Version 4 of the model source uses a byte-verified ZIP-format `.bundle` payload to preserve it. Neither attempt was counted as successful.
+
+A later Windows run passed 44 cases and timed out in KS045's real training subprocess after 180 seconds; the report is retained in `validation/attempts/windows-subprocess-timeout.json`. The cause of that environment-specific timeout was not isolated. An isolated rerun of KS045 then passed in 55.612 seconds; its record is alongside the timeout report. This is a targeted retry, not a new complete Windows suite. Earlier local 45/45 evidence remains versioned separately, and hosted Linux runs completed the same training case. Latest verified states are in `release_status.json`.
