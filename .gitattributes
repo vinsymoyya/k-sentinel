@@ -4,3 +4,4 @@
 *.gz binary
 *.pdf binary
 *.png binary
+research/real-acquisition/manifest.json -text

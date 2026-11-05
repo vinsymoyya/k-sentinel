@@ -21,6 +21,7 @@ jobs:
       - run: python -m pip install -e ".[learned,real]"
       - run: python scripts/run_validation.py --output validation/ci
       - run: python scripts/run_real_validation.py --output validation/ci/real
+      - run: python scripts/verify_real_results.py --output validation/ci/real-study-verification.json
       - run: python -m pip check
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

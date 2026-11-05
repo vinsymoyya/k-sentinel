@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "rows_checked": 2880,
+  "participant_roles": {
+    "train": 20,
+    "calibration": 30,
+    "test": 25,
+    "motion_risk": 25
+  },
+  "acquisition_source_checks": 160,
+  "calibration_strata": 36,
+  "reported_groups": 90,
+  "manifest_sha256": "79c2e428add137c2d0ea054aab03383a5b60b6980163bd3abe22b072631b6794",
+  "finetuned_checkpoint_sha256": "7413aafb80012c9e82e2166bb34bbb355e092bb6619435cbbb7a01f9abd2140d",
+  "max_acquired_relative_residual": 1.833941212225909e-07,
+  "max_stored_source_rss_relative_error": 8.92733922341904e-08,
+  "zero_fill_scores_equal_one": true,
+  "all_flags_and_high_error_labels_reconciled": true,
+  "source_reference_caveat": "References contain noise and possible artifacts; clinical anatomy not validated"
+}

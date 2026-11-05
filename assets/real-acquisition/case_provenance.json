@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "scan_id": "2022120409",
+      "source_sha256": "602840734864f740d42ece3c45218d487c09d5b858754c04d9c80715b0cf3da4",
+      "slice": 8,
+      "hosted_slice_rss_nrmse": 0.3277987837791443,
+      "local_slice_rss_nrmse": 0.3277987837791443,
+      "absolute_agreement_tolerance": 0.0001
+    },
+    {
+      "scan_id": "2022121703",
+      "source_sha256": "2297dd98a22ae7510a2a5fb818a039fe07591586ce4d69bd51067bca3388b3ef",
+      "slice": 8,
+      "hosted_slice_rss_nrmse": 0.32250723242759705,
+      "local_slice_rss_nrmse": 0.32250726222991943,
+      "absolute_agreement_tolerance": 0.0001
+    },
+    {
+      "scan_id": "2022120402",
+      "source_sha256": "726c1fc092382ff0bf0ee120bb502976cb474db0a4a4ee0ddf9b3e9400bea3cd",
+      "slice": 8,
+      "hosted_slice_rss_nrmse": 0.3239770233631134,
+      "local_slice_rss_nrmse": 0.3239770233631134,
+      "absolute_agreement_tolerance": 0.0001
+    }
+  ],
+  "checkpoint_sha256": "7413aafb80012c9e82e2166bb34bbb355e092bb6619435cbbb7a01f9abd2140d",
+  "numpy": "2.5.4",
+  "torch": "2.14.1+cpu"
+}

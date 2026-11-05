@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+import re
 import numpy as np
 
 LABELS = {'zero_fill':'Zero fill','phantom_cnn':'Frozen phantom CNN','m4raw_finetuned_cnn':'Fine-tuned CNN'}
@@ -39,6 +40,11 @@ def main():
     line('Vinsy Moyya | ORCID: https://orcid.org/0009-0003-0042-3556 | 2026-11-05 | Unreviewed research')
     line('## Main result')
     line(f"The complete experiment used **180 real M4Raw acquisitions from 100 participant-disjoint volunteers**. In the predeclared primary condition (T2, repeat 1, random retrospective R=4, fine-tuned CNN), mean RSS reference NRMSE was **{learned['mean_rss_nrmse']:.4f}**. The audit flagged **{learned['flagged']}/25** participants. **{learned['high_reference_error_cases']}** exceeded the calibration-defined high-reference-error cutoff; **{learned['unflagged_high_reference_error']}** of those remained unflagged.")
+    frozen_primary=next(g for g in primary if g['method']=='phantom_cnn')
+    if learned['mean_rss_nrmse']>=frozen_primary['mean_rss_nrmse']:
+        line(f"Fine-tuning did **not** improve mean primary reference error over the frozen CNN: {learned['mean_rss_nrmse']:.5f} versus {frozen_primary['mean_rss_nrmse']:.5f}. This study supplies real-acquisition evidence and failure analysis, not a demonstrated model-performance advance.")
+    flair_primary=next(g for g in groups if g['role']=='test' and g['sequence']=='FLAIR' and g['repetition']==1 and g['pattern']=='random' and g['acceleration']==4 and g['method']=='m4raw_finetuned_cnn')
+    line(f"In the preplanned FLAIR/random/R=4 secondary condition, **{flair_primary['unflagged_high_reference_error']}/{flair_primary['high_reference_error_cases']}** high-reference-error cases remained unflagged among 25 test participants, despite contrast-matched calibration. This is direct real-acquisition evidence of a limitation, with small event counts and no diagnostic labels.")
     line('These endpoints concern agreement with the same acquisition\'s all-available, noisy source reconstruction. They do not establish anatomical correctness, detection of unsupported focal features, motion correction, diagnosis or patient benefit. Every deliberately injected image-structure challenge from the earlier synthetic study is absent here.')
     line('## Why this extension was needed')
     line('Community feedback asked whether measurement audits would remain useful under real acquisition variation and naturally occurring reconstruction failures. The original v0.1.0 paper and v0.2.0 synthetic results are preserved. This extension evaluates actual scanner-exported, source-corrected four-coil MRI measurements, rather than treating a Fourier transform of a magnitude image as raw acquisition data.')
@@ -67,20 +73,22 @@ def main():
     for g in primary:
         auc='n/a' if g['reference_error_auroc'] is None else f"{g['reference_error_auroc']:.3f}"
         line(f"| {LABELS[g['method']]} | {g['mean_rss_nrmse']:.5f} | {g['flagged']}/25 | {g['high_reference_error_cases']} | {g['unflagged_high_reference_error']} | {auc} |")
+    if learned['high_reference_error_cases'] < 5:
+        line(f"Only **{learned['high_reference_error_cases']}** primary fine-tuned case exceeded the reference-error cutoff. This is too few events to estimate detection sensitivity reliably or interpret an AUROC as established generalization. An observed caught fraction must not be advertised as clinical sensitivity.")
     by_method = {m:{r['scan_id']:r['rss_nrmse'] for r in rows if r['role']=='test' and r['sequence']=='T2' and r['repetition']==1 and r['pattern']=='random' and r['acceleration']==4 and r['method']==m} for m in LABELS}
     ids=sorted(by_method['m4raw_finetuned_cnn'])
     for baseline in ('zero_fill','phantom_cnn'):
         differences=[by_method['m4raw_finetuned_cnn'][s]-by_method[baseline][s] for s in ids]
         line(f"Fine-tuned minus {LABELS[baseline].lower()} paired RSS NRMSE difference: **{interval(differences)}**, mean [95% participant-bootstrap interval]. Negative differences favor the fine-tuned model. These intervals condition on the fitted model and do not capture training/calibration-set uncertainty.")
     line('## Acquisition changes and motion-risk stress')
-    line('| Actual acquisition / cohort | Participants | Mean RSS NRMSE | Matched-calibration flags | Frozen T2/R4 flags |')
-    line('|---|---:|---:|---:|---:|')
+    line('| Actual acquisition / cohort | Participants | Mean RSS NRMSE | Matched flags | Frozen T2/R4 flags | High-error cases | High-error unflagged |')
+    line('|---|---:|---:|---:|---:|---:|---:|')
     for g in groups:
         if g['method']!='m4raw_finetuned_cnn' or g['pattern']!='random' or g['acceleration']!=4:
             continue
         t=next(t for t in transfer['groups'] if all(t[k]==g[k] for k in ('role','motion_type','sequence','repetition','pattern','acceleration','method')))
         label=f"{g['sequence']} repeat {g['repetition']}" if g['role']=='test' else f"T2 {g['motion_type']} risk"
-        line(f"| {label} | {g['participants']} | {g['mean_rss_nrmse']:.5f} | {g['flagged']}/{g['participants']} | {t['frozen_T2_R4_flags']}/{g['participants']} |")
+        line(f"| {label} | {g['participants']} | {g['mean_rss_nrmse']:.5f} | {g['flagged']}/{g['participants']} | {t['frozen_T2_R4_flags']}/{g['participants']} | {g['high_reference_error_cases']} | {g['unflagged_high_reference_error']} |")
     paired=summary['paired_repetition_error_change']
     line(f"Actual T2 repeat 2 minus repeat 1 paired mean RSS NRMSE change: **{paired['mean']:.5f} [{paired['interval_95'][0]:.5f}, {paired['interval_95'][1]:.5f}]**, 95% participant-bootstrap interval, n=25 paired people. No repeat was selected as a cleaner anatomical truth.")
     line('The frozen-threshold column is an additional exploratory analysis, specified after the main protocol during implementation and before inspecting held-out summaries. It reuses the exact T2/random/R4 calibration scores across changes, without recalibration or model updates. It does not change primary outcomes. Condition-matched and transferred thresholds answer different questions; neither supplies clinical validation.')
@@ -99,6 +107,12 @@ def main():
     for r in summary['worst_unflagged_cases']:
         line(f"| {r['scan_id']} | {r['rss_nrmse']:.5f} | {r['audit_score']:.5f} | {r['p_value']:.5f} | {'yes' if r['high_reference_error'] else 'no'} |")
     line('Cases are selected by the fixed rule highest mean reference error among unflagged primary cases, with scan-ID tie breaking. The figure shows stored slice 8; ranking averages slices 7/8/9. No model or threshold was tuned on these cases. Pixel differences alone do not prove an unsupported lesion or a missed clinical finding.')
+    line('### Additional contrast-failure illustration (post-outcome exploratory)')
+    line('We also display all two high-reference-error, unflagged cases in the preplanned FLAIR/repetition-1/random-R=4 secondary stratum. This illustrative selection was made after outcome inspection and is not the predeclared primary-case panel. Both cases, rather than a visually selected subset, are included. The original primary results remain unchanged.')
+    line('| Public scan ID | FLAIR RSS NRMSE | Audit p-value | Decision |')
+    line('|---|---:|---:|---|')
+    for r in sorted((r for r in rows if r['role']=='test' and r['sequence']=='FLAIR' and r['repetition']==1 and r['pattern']=='random' and r['acceleration']==4 and r['method']=='m4raw_finetuned_cnn' and r['high_reference_error'] and not r['flagged']),key=lambda r:r['scan_id']):
+        line(f"| {r['scan_id']} | {r['rss_nrmse']:.5f} | {r['p_value']:.5f} | unflagged |")
     line('## Reproducibility and verification')
     line(f"The complete record contains **{verification['rows_checked']}** acquisition/condition/model rows, **{verification['calibration_strata']}** calibration strata and **{verification['reported_groups']}** reported test/stress groups. Every saved mask, per-slice mean, flag, high-error label and group summary is reconciled independently. Maximum acquired relative residual is **{verification['max_acquired_relative_residual']:.3g}**; maximum stored-source RSS reconciliation error among 160 evaluation/calibration acquisitions is **{verification['max_stored_source_rss_relative_error']:.3g}**.")
     line(f"The completed cloud run used Python {config['python']}, NumPy {config['numpy']} and PyTorch {config['torch']}. The original 45 scientific/software contracts plus 12 new real-acquisition contracts pass without skips on GitHub and in Kaggle. Downloaded JSON/JUnit evidence, all result rows, fixed protocol/manifest, source hashes and the fine-tuned checkpoint accompany the release. The original synthetic results remain byte-preserved.")
@@ -107,14 +121,15 @@ def main():
     line('This is a single-scanner, four-coil, low-field healthy-volunteer pilot, with twenty fine-tuning people and twenty-five primary test people. Three fixed slices do not characterize an entire volume. Source references contain noise, partial PE support and possible motion. The per-coil CNN is a compact baseline; modern sensitivity-aware/unrolled reconstruction systems require separate comparisons. Thirty calibration people yield coarse tail ranks; repeated subjects are not new independent evidence. Bootstrap intervals condition on fitted models and calibration. Secondary comparisons are exploratory and do not support multiplicity-corrected superiority claims.')
     line('Actual contrast/repeat/motion-risk variation has been studied; new vendors, field strengths, prospective sequences, measured scan time, pathology cohorts and clinician-reviewed unsupported-feature labels remain untested. Next steps are stronger open multicoil models, independent-site raw data, registered clinical endpoints and reader review of native failure cases. The present result supports open error analysis and reproducibility, not clinical deployment or a proven reduction in invasive procedures.')
     line('## Figures')
-    for title,name in [('Sampling and audit','sampling_and_audit'),('Actual acquisition variations','actual_acquisition_variations'),('Audit versus natural reference error','audit_vs_natural_error'),('Fixed-rule native failure cases','natural_failure_cases')]:
+    for title,name in [('Sampling and audit','sampling_and_audit'),('Actual acquisition variations','actual_acquisition_variations'),('Audit versus natural reference error','audit_vs_natural_error'),('Fixed-rule native failure cases','natural_failure_cases'),('Exploratory FLAIR reference-error cases','flair_unflagged_high_error')]:
         line(f'![{title}](../../assets/real-acquisition/{name}.png)')
     line('Source-based figures: M4Raw, Lyu et al. (2023), CC BY 4.0. They retain their own attribution and are not licensed as the older CC0 synthetic data.')
     line('## References')
     line('Lyu M, Mei L, Huang S, et al. M4Raw: A multi-contrast, multi-repetition, multi-channel MRI k-space dataset for low-field MRI research. Scientific Data 10, 264 (2023). https://doi.org/10.1038/s41597-023-02181-4 .')
     line('M4Raw original data, version 1.6: https://doi.org/10.5281/zenodo.8056074 . Original-creators\' source and data card: https://huggingface.co/datasets/mylyu/M4Raw_brain/tree/46cb84455c0d6653b3b4afe27d56b10fbd4cd424 . License: https://creativecommons.org/licenses/by/4.0/ .')
     line('K-Sentinel fixed protocol, manifest and attribution: research/real-acquisition/PROTOCOL.md, manifest.json, SOURCE_NOTICE.md. Additional transfer analysis: EXPLORATORY_ANALYSES.md. Original unreviewed synthetic paper: v0.1.0; synthetic validation/data/model release: v0.2.0. Neither is rewritten by this addendum.')
-    Path(args.output).write_text('\n'.join(out),encoding='utf-8')
+    text=re.sub(r'(\|[^\n]*\|)\n\n(?=\|)',r'\1\n','\n'.join(out))
+    Path(args.output).write_text(text,encoding='utf-8')
     print(args.output)
 
 

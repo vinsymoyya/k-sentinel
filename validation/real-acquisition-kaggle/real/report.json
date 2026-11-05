@@ -1,0 +1,60 @@
+{
+  "total": 12,
+  "executed": 12,
+  "passed": 12,
+  "failed": 0,
+  "skipped": 0,
+  "status": "passed",
+  "recorded_at_utc": "2026-11-05T10:05:36.228780+00:00",
+  "checks": [
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_analytic_center_and_multicoil_rss",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_analytic_opposite_phase_audit_and_unit_invariance",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_audit_fusion_preserves_initial_samples_and_reduces_coil_reference_error",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_centered_complex_fourier_inverse_and_energy",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_h5_loader_checks_bytes_support_centered_rss_and_rejects_corruption",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_initial_normalization_ignores_poisoned_audit_and_reference_values",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_natural_error_summary_keeps_test_errors_out_of_calibration",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_participants_cannot_cross_roles_but_repetitions_can_share_a_role",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_rank_calibration_ties_are_conservative_and_subject_counted",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_real_open_model_keeps_measurements_and_ignores_unobserved_values",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_sampling_reproducible_and_rejects_insufficient_support",
+      "status": "passed"
+    },
+    {
+      "test": "test_real_acquisition.RealAcquisitionContracts.test_unavailable_source_columns_never_enter_initial_or_audit",
+      "status": "passed"
+    }
+  ],
+  "scope": "Additional real-acquisition software contracts; clinical validation not performed"
+}

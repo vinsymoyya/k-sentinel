@@ -1,6 +1,6 @@
 {
-  "version": "0.2.0",
-  "as_of_local_date": "2026-11-03",
+  "version": "0.3.0",
+  "as_of_local_date": "2026-11-05",
   "github": "public repository published at https://github.com/vinsymoyya/k-sentinel",
   "orcid": "public preprint work added and verified",
   "orcid_record_url": "https://orcid.org/0009-0003-0042-3556",
@@ -12,6 +12,27 @@
   "peer_review": "not performed",
   "clinical_validation": "not performed",
   "validation": {
+    "distinct_cases": 57,
+    "legacy_cases": 45,
+    "new_real_acquisition_cases": 12,
+    "skipped": 0,
+    "hosted": "45 legacy + 12 real-acquisition cases pass on GitHub Python 3.11/3.12 and Kaggle Python 3.13",
+    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/42009849650",
+    "hosted_source_commit": "0b5e282967bfc0d4cae98378199674e934227011",
+    "completed_real_run_independent_verification": "validation/real-acquisition-verification.json"
+  },
+  "kaggle": {
+    "dataset": "public; ready; all nine shards listed; 3,840 objects verified locally",
+    "dataset_url": "https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840",
+    "model": "public; version 4 source bundle and three original checkpoints round-trip SHA256 verified",
+    "notebook": "public; version 3 COMPLETE; 45/45 zero skips; three seeds trained for eight epochs; QUICK=False",
+    "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn/4",
+    "notebook_url": "https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training",
+    "training_test_subjects": 1536,
+    "run_evidence": "validation/kaggle-run-0.2.0.json"
+  },
+  "github_release_url": "https://github.com/vinsymoyya/k-sentinel/releases/tag/v0.3.0",
+  "v0.2_validation_history": {
     "distinct_cases": 45,
     "local_passed": 45,
     "local_skipped": 0,
@@ -26,15 +47,37 @@
       "isolated_retry": "KS045 passed in 55.612 seconds"
     }
   },
-  "kaggle": {
-    "dataset": "public; ready; all nine shards listed; 3,840 objects verified locally",
-    "dataset_url": "https://www.kaggle.com/datasets/vinsymoyya/k-sentinel-synthetic-mri-3840",
-    "model": "public; version 4 source bundle and three original checkpoints round-trip SHA256 verified",
-    "notebook": "public; version 3 COMPLETE; 45/45 zero skips; three seeds trained for eight epochs; QUICK=False",
-    "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/residual-cnn/4",
-    "notebook_url": "https://www.kaggle.com/code/vinsymoyya/k-sentinel-45-checks-and-open-training",
-    "training_test_subjects": 1536,
-    "run_evidence": "validation/kaggle-run-0.2.0.json"
-  },
-  "github_release_url": "https://github.com/vinsymoyya/k-sentinel/releases/tag/v0.2.0"
+  "real_acquisition_study": {
+    "dataset": "M4Raw",
+    "data_license": "CC-BY-4.0",
+    "data_revision": "46cb84455c0d6653b3b4afe27d56b10fbd4cd424",
+    "participants": 100,
+    "roles": {
+      "train": 20,
+      "calibration": 30,
+      "test": 25,
+      "motion_risk": 25
+    },
+    "source_acquisitions": 180,
+    "result_rows": 2880,
+    "calibration_strata": 36,
+    "reported_groups": 90,
+    "status": "COMPLETE; independently reconciled",
+    "notebook_version": 1,
+    "notebook_url": "https://www.kaggle.com/code/vinsymoyya/k-sentinel-real-mri-variations-and-failures",
+    "source_model_version": 6,
+    "fine_tuned_checkpoint_sha256": "7413aafb80012c9e82e2166bb34bbb355e092bb6619435cbbb7a01f9abd2140d",
+    "trained_model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/m4raw-pilot/1",
+    "primary_mean_rss_nrmse": {
+      "fine_tuned": 0.31023107727368676,
+      "frozen": 0.3094298322995504,
+      "zero_fill": 0.311713361342748
+    },
+    "primary_high_error_cases": 1,
+    "primary_high_error_unflagged": 0,
+    "secondary_FLAIR_R4_high_error_cases": 2,
+    "secondary_FLAIR_R4_high_error_unflagged": 2,
+    "clinical_validation": "not performed",
+    "paper_status": "unreviewed exploratory addendum; original paper unchanged"
+  }
 }

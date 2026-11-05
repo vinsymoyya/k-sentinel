@@ -1,5 +1,6 @@
 """Publication figures from complete real-MRI records and source-verified cases."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 import sys
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from ksentinel.real_acquisition import (load_acquisition, reconstruct_coils, rss,
-                                       sampling, sampling_seed)
+                                       sampling, sampling_seed, relative_error, file_sha256)
 from ksentinel.model_io import load_model
 from download_m4raw import fetch_one
 
@@ -51,7 +52,10 @@ def main():
         axes[0].plot(x,[g['mean_rss_nrmse'] for g in selected],'-o',color=color,label=LABELS[method])
         p = np.array([g['flagged']/g['participants'] for g in selected])
         bounds = np.array([g['flag_fraction_interval_95_wilson'] for g in selected]).T
-        axes[1].errorbar(x,p,yerr=np.array([p-bounds[0],bounds[1]-p]),fmt='-o',color=color,capsize=3,label=LABELS[method])
+        lengths=np.array([p-bounds[0],bounds[1]-p])
+        if lengths.min() < -1e-12:
+            raise ValueError('Reported interval does not contain its point estimate')
+        axes[1].errorbar(x,p,yerr=np.maximum(0,lengths),fmt='-o',color=color,capsize=3,label=LABELS[method])
     for ax in axes:
         ax.set_xticks([0,1,2],['2','4','8'])
         ax.set_xlabel('Nominal retrospective acceleration (source support)')
@@ -104,10 +108,16 @@ def main():
     manifest = json.loads((ROOT/'research/real-acquisition/manifest.json').read_text(encoding='utf-8'))
     by_path = {r['relative_path']:r for r in manifest['files']}
     cases = (summary['worst_unflagged_cases'] or summary['highest_error_cases'])[:3]
+    pending = [by_path[case['path']] for case in cases
+               if not (Path(args.data)/case['path']).exists()]
+    if pending:
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            list(pool.map(lambda item:fetch_one(ROOT/'tmp/m4raw/figure-data',manifest,item),pending))
     torch.set_num_threads(2)
     models = {'zero_fill':None, 'phantom_cnn':load_model(ROOT/'results/main/cnn_seed11.pt',config['frozen_checkpoint_sha256']),
         'm4raw_finetuned_cnn':load_model(results/'m4raw_finetuned_seed20261105.pt',json.loads((results/'training.json').read_text(encoding='utf-8'))['checkpoint_sha256'])}
     fig,axes = plt.subplots(len(cases),5,figsize=(13,3.1*len(cases)),squeeze=False)
+    displayed = []
     for index,case in enumerate(cases):
         item = by_path[case['path']]
         data_root = Path(args.data)
@@ -117,17 +127,27 @@ def main():
         raw, target, support, _ = load_acquisition(data_root,item)
         mask,audit,acs = sampling(support,4,'random',sampling_seed(item['scan_id'],'T2',4,'random'))
         images = {name:rss(reconstruct_coils(model,raw[1],mask,acs)) for name,model in models.items()}
+        local_error = relative_error(images['m4raw_finetuned_cnn'],target[1])
+        hosted_error = case['slice_metrics'][1]['rss_nrmse']
+        if abs(local_error-hosted_error)>1e-4:
+            raise ValueError('Local displayed reconstruction disagrees with the hosted numerical record')
+        displayed.append({'scan_id':item['scan_id'],'source_sha256':item['sha256'],'slice':8,
+                          'hosted_slice_rss_nrmse':hosted_error,'local_slice_rss_nrmse':local_error,
+                          'absolute_agreement_tolerance':1e-4})
         maximum = float(np.quantile(target[1],.99))
-        displays = [('All-available source',target[1]),('Zero fill',images['zero_fill']),('Frozen phantom CNN',images['phantom_cnn']),('Fine-tuned CNN',images['m4raw_finetuned_cnn']),('Absolute RSS difference',abs(images['m4raw_finetuned_cnn']-target[1]))]
+        displays = [('All-available\nsource',target[1]),('Zero fill',images['zero_fill']),('Frozen phantom\nCNN',images['phantom_cnn']),('Fine-tuned\nCNN',images['m4raw_finetuned_cnn']),('Absolute RSS\ndifference',abs(images['m4raw_finetuned_cnn']-target[1]))]
         for column,(title,image) in enumerate(displays):
             ax = axes[index,column]
             ax.imshow(image,cmap='gray' if column<4 else 'magma',vmin=0,vmax=maximum if column<4 else maximum*.3)
             ax.set_xticks([]);ax.set_yticks([])
-            if index==0:ax.set_title(title,fontsize=10)
-            if column==0:ax.set_ylabel(f"{item['scan_id']}\nmean NRMSE {case['rss_nrmse']:.3f}\naudit {'flagged' if case['flagged'] else 'unflagged'}",fontsize=9)
+            if index==0:ax.set_title(title,fontsize=15)
+            if column==0:ax.set_ylabel(f"{item['scan_id']}\nmean NRMSE {case['rss_nrmse']:.3f}\naudit {'flagged' if case['flagged'] else 'unflagged'}",fontsize=13)
         # The displayed slice is fixed (8); ranking used the predeclared mean across 7/8/9.
-    fig.suptitle('Predeclared worst unflagged native reconstruction cases' if summary['worst_unflagged_cases'] else 'Predeclared highest-error native reconstruction cases',fontsize=13,fontweight='bold')
+    fig.suptitle('Predeclared worst unflagged native reconstruction cases' if summary['worst_unflagged_cases'] else 'Predeclared highest-error native reconstruction cases',fontsize=18,fontweight='bold')
     finish(fig,folder,'natural_failure_cases','Source MRI: M4Raw, Lyu et al. (2023), CC BY 4.0. Display-only reference windowing. No inserted structures; source reference may contain noise or motion.')
+    (folder/'case_provenance.json').write_text(json.dumps({'cases':displayed,
+        'checkpoint_sha256':file_sha256(results/'m4raw_finetuned_seed20261105.pt'),
+        'numpy':np.__version__,'torch':str(torch.__version__)},indent=2)+'\n',encoding='utf-8')
     print('Wrote four PNG/SVG figure pairs',flush=True)
 
 

@@ -16,6 +16,7 @@ keywords = ["mri", "medical-imaging", "inverse-problems", "reconstruction", "unc
 [project.optional-dependencies]
 learned = ["torch>=2.2,<3"]
 real = ["h5py>=3.10,<4", "requests>=2.31,<3"]
+figures = ["matplotlib>=3.9,<4"]
 paper = ["reportlab>=4,<5", "Pillow>=10", "pypdf>=5"]
 
 [project.scripts]

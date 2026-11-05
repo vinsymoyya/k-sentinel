@@ -2,8 +2,23 @@
   "title": "K-Sentinel: Limits of Held-Out Measurement Audits for AI MRI Reconstruction",
   "upload_type": "software",
   "description": "Reproducible MRI reconstruction audit benchmark with immutable synthetic controls and a separately attributed, exploratory M4Raw real-acquisition extension. Includes model and calibration workflows, acquisition variations and natural reference-error cases. No clinical validation.",
-  "creators": [{"name": "Moyya, Vinsy", "orcid": "0009-0003-0042-3556"}],
+  "creators": [
+    {
+      "name": "Moyya, Vinsy",
+      "orcid": "0009-0003-0042-3556"
+    }
+  ],
   "license": "MIT",
-  "keywords": ["MRI", "medical imaging", "reconstruction", "calibration", "synthetic benchmark"],
+  "keywords": [
+    "MRI",
+    "medical imaging",
+    "reconstruction",
+    "calibration",
+    "synthetic benchmark",
+    "raw MRI",
+    "natural reconstruction errors",
+    "multicoil",
+    "reproducible research"
+  ],
   "version": "0.3.0"
 }

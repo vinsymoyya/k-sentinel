@@ -4,7 +4,13 @@
 
 **Can an AI reconstruction match its acquired MRI measurements and still contain an unsupported structure? Yes. Can a small independent audit always catch it? No.**
 
-An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier audits, and their limits. Includes synthetic data, a small trained CNN, an external reconstruction interface, complete results, and an unreviewed methods preprint.
+An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier audits, and their limits. Includes immutable synthetic controls and a separately attributed exploratory real-MRI study, open CNNs, complete results and unreviewed research reports.
+
+**v0.3.0 real-MRI extension:** 180 actual M4Raw acquisitions from 100 participant-disjoint healthy volunteers; T2/FLAIR contrast, actual repeats, motion-risk cohorts, native four-coil reconstruction, retrospective sampling variations and natural reference-error cases. [Read the addendum](research/real-acquisition/REPORT.md) | [PDF](output/pdf/k-sentinel-real-acquisition-addendum.pdf) | [Completed Kaggle experiment](https://www.kaggle.com/code/vinsymoyya/k-sentinel-real-mri-variations-and-failures) | [Real-MRI pilot weights](https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/m4raw-pilot/1) | [Protocol and manifest](research/real-acquisition/PROTOCOL.md).
+
+Fine-tuning did not outperform the frozen CNN in the primary condition (mean RSS reference NRMSE 0.31023 versus 0.30943). Only one primary high-error event occurred. In the preplanned FLAIR/R4 secondary condition, both high-reference-error cases were unflagged. Source references contain noise/artifacts; these are not disease or clinician-reviewed focal-feature labels. M4Raw is CC BY 4.0, separate from the older CC0 synthetic data.
+
+The original **45** contracts remain, with **12 additional real-acquisition contracts**, all passing without skips on hosted GitHub and Kaggle. Independent real-run verification reconciles 2,880 rows, 36 calibration strata and 90 reported groups. [Verification evidence](validation/real-acquisition-verification.json).
 
 **v0.2.0:** 45 distinct validation cases, validated open-model inference, a full 3,840-object split-preserving dataset export, and an offline Kaggle training notebook. The original paper and experimental results remain the v0.1.0 record.
 
@@ -14,7 +20,7 @@ An open, CPU-reproducible benchmark of measurement-blind errors, hidden Fourier 
 
 ![Audits reveal some errors and miss others](assets/audit_detection.png)
 
-## What the experiment found
+## Original synthetic experiment (v0.1.0)
 
 Three seeds, **1,536 independent test phantoms**, three reconstruction controls, seven challenge categories and four audit budgets. The resulting **129,024 records are repeated evaluations of those test phantoms**, not separate patients.
 
@@ -30,7 +36,7 @@ The oracle is **not deployable**. Its result must not be presented as the traine
 
 The four-column audit raises sampling from 16/64 to 20/64 columns: a **25% increase over the initial sample count**. This is not a measured scan-time result. All thresholds, intervals, per-seed rates and policy errors are in the paper and machine-readable results.
 
-## Try it on a CPU
+## Try the synthetic benchmark on a CPU
 
 Python 3.10 or newer. No credentials, patient data, GPU or external dataset required.
 

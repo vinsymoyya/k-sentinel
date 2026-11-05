@@ -1,4 +1,6 @@
-# Public Kaggle distribution
+# Public Kaggle distributions
+
+## Preserved synthetic workflow (v0.2.0)
 
 The distribution contains three separate reusable artifacts:
 
@@ -64,3 +66,22 @@ The successful round-trip integrity record is `validation/kaggle-model-0.2.0.jso
 The downloaded reports were independently checked for eight finite epoch losses, declared split counts, 3,840 distinct identities across all seeds, manifest SHA256, checkpoint SHA256, exact test identity membership and recomputed mean errors. Core module and test hashes match the current checkout. Reports/checkpoints are retained in `results/kaggle-0.2.0/`; validation JSON/JUnit and the non-quick run summary are in `validation/kaggle-run-0.2.0/`. The compact integrity record is `validation/kaggle-run-0.2.0.json`.
 
 These retrained checkpoints are separate from the immutable original `results/main/` weights. This is synthetic reconstruction evidence, not clinical efficacy or an improvement to the original paper's low added-error audit sensitivity.
+
+## Completed real-acquisition workflow (v0.3.0)
+
+[Real-MRI notebook](https://www.kaggle.com/code/vinsymoyya/k-sentinel-real-mri-variations-and-failures), version 1, completed the original 45 plus 12 new contracts with zero skips, downloaded/verified all 180 source H5 files, fine-tuned eight fixed epochs, and completed all 2,880 result rows. Its attached original phantom weights remain unchanged in model source variation version 6. The separately fine-tuned pilot is documented in `research/real-acquisition/MODEL_CARD.md`.
+
+This notebook needs internet for the frozen 2.22 GB CC BY 4.0 M4Raw source selection. It does not attach or relabel M4Raw as the older synthetic CC0 dataset. Actual repeated acquisitions and T2/FLAIR contrast are distinguished from retrospective R/mask changes. Source references contain noise/artifacts. The primary fine-tuned model did not outperform the frozen model. All 100 participant identities remain disjoint across train/calibration/test/motion-risk roles.
+
+```bash
+python -m pip install -e ".[learned,real]"
+python scripts/run_validation.py --output validation/local
+python scripts/run_real_validation.py --output validation/local/real
+python scripts/download_m4raw.py
+python scripts/run_real_acquisition.py --output results/my-real-reproduction
+python scripts/verify_real_results.py --results results/my-real-reproduction --output validation/my-real-verification.json
+```
+
+Use a new result directory; the runner refuses to overwrite an existing experiment. The immutable protocol/manifest and source notices live in `research/real-acquisition/`. The independently reconciled original run is `results/real-acquisition-0.3.0/`. Add `.[figures,paper]` for plotting/PDF generation and retain source-based figure attribution.
+
+The separate [M4Raw pilot weight variation](https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/m4raw-pilot/1) contains the verified fine-tuned checkpoint, model card, source bundle and addendum. Original phantom weights remain in their original variation.
