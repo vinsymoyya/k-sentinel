@@ -5,7 +5,7 @@
   "failed": 0,
   "skipped": 0,
   "status": "passed",
-  "recorded_at_utc": "2026-11-05T10:03:35.152735+00:00",
+  "recorded_at_utc": "2026-11-05T10:49:01.974597+00:00",
   "checks": [
     {
       "test": "test_real_acquisition.RealAcquisitionContracts.test_analytic_center_and_multicoil_rss",

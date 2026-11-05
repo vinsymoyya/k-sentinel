@@ -17,8 +17,8 @@
     "new_real_acquisition_cases": 12,
     "skipped": 0,
     "hosted": "45 legacy + 12 real-acquisition cases pass on GitHub Python 3.11/3.12 and Kaggle Python 3.13",
-    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/42009849650",
-    "hosted_source_commit": "0b5e282967bfc0d4cae98378199674e934227011",
+    "hosted_run_url": "https://github.com/vinsymoyya/k-sentinel/actions/runs/42013720453",
+    "hosted_source_commit": "bd85e84d78b5442223bdf45465ad06a7312addf3",
     "completed_real_run_independent_verification": "validation/real-acquisition-verification.json"
   },
   "kaggle": {
@@ -78,6 +78,7 @@
     "secondary_FLAIR_R4_high_error_cases": 2,
     "secondary_FLAIR_R4_high_error_unflagged": 2,
     "clinical_validation": "not performed",
-    "paper_status": "unreviewed exploratory addendum; original paper unchanged"
+    "paper_status": "unreviewed exploratory addendum; original paper unchanged",
+    "model_roundtrip_verified_files": 10
   }
 }
