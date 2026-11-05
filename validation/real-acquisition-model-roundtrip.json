@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "model_url": "https://www.kaggle.com/models/vinsymoyya/k-sentinel/pyTorch/m4raw-pilot/1",
+  "files_verified": 10,
+  "checkpoint_sha256": "7413aafb80012c9e82e2166bb34bbb355e092bb6619435cbbb7a01f9abd2140d",
+  "all_source_and_document_bytes_match": true
+}
