@@ -6,7 +6,7 @@ permissions:
   contents: read
 jobs:
   cpu:
-    name: 45 contracts (Python ${{ matrix.python }})
+    name: Legacy and real-MRI contracts (Python ${{ matrix.python }})
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
@@ -18,8 +18,9 @@ jobs:
         with:
           python-version: '${{ matrix.python }}'
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-      - run: python -m pip install -e ".[learned]"
+      - run: python -m pip install -e ".[learned,real]"
       - run: python scripts/run_validation.py --output validation/ci
+      - run: python scripts/run_real_validation.py --output validation/ci/real
       - run: python -m pip check
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

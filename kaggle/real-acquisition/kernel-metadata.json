@@ -1,0 +1,16 @@
+{
+  "id": "vinsymoyya/k-sentinel-real-mri-variations-and-failures",
+  "title": "K-Sentinel Real MRI Variations and Failures",
+  "code_file": "real-acquisition.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "model_sources": [
+    "vinsymoyya/k-sentinel/pyTorch/residual-cnn/6"
+  ],
+  "competition_sources": [],
+  "kernel_sources": []
+}

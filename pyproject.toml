@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "k-sentinel"
-version = "0.2.0"
-description = "Reproducible synthetic audits for measurement-blind MRI reconstruction errors"
+version = "0.3.0"
+description = "Reproducible MRI reconstruction audits with synthetic controls and exploratory real acquisitions"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -15,6 +15,7 @@ keywords = ["mri", "medical-imaging", "inverse-problems", "reconstruction", "unc
 
 [project.optional-dependencies]
 learned = ["torch>=2.2,<3"]
+real = ["h5py>=3.10,<4", "requests>=2.31,<3"]
 paper = ["reportlab>=4,<5", "Pillow>=10", "pypdf>=5"]
 
 [project.scripts]
